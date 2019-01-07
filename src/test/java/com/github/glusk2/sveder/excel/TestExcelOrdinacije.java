@@ -11,13 +11,7 @@ import java.text.DecimalFormat;
 
 import org.junit.Test;
 
-/** Testni razred za {@link ExcelOrdinacije}. */
 public final class TestExcelOrdinacije {
-    /**
-     * Preveri preprost izpis ordinacij.
-     *
-     * @throws Exception Če pride do napake.
-     */
     @Test
     public void izpiseVseOrdinacije() throws Exception {
         StringBuilder testFileLines = new StringBuilder();
