@@ -24,9 +24,11 @@ public final class TestExcelOrdinacije {
             o -> testFileLines.append(
                 String.format(
                     "%6d %5d %s\r\n",
-                    o.izvajalec(),
-                    o.zdravnik(),
-                    new DecimalFormat("#.##").format(o.doseganjePovprecja())
+                    o.izvajalec().intValue(),
+                    o.zdravnik().intValue(),
+                    new DecimalFormat("#.##").format(
+                        o.doseganjePovprecja().doubleValue()
+                    )
                 )
             )
         );

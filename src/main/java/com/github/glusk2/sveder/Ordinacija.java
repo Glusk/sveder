@@ -9,13 +9,13 @@ public interface Ordinacija {
      * Posebne šifre, ki ne predstavljajo izvajlcev: {@code XX9999}
      * @return Pozitivno celo število, omejeno na 6 mest.
      */
-    int izvajalec();
+    Number izvajalec();
     /**
      * Šifra zobozdravnika, nosilca ordinacije.
      *
      * @return Pozitivno celo število, omejeno na 5 mest.
      */
-    int zdravnik();
+    Number zdravnik();
     /**
      * Količnik doseganja povprečja ordinacije.
      *
@@ -23,5 +23,5 @@ public interface Ordinacija {
      * koncesijo.
      * @return Pozitivo decimalno število.
      */
-    double doseganjePovprecja();
+    Number doseganjePovprecja();
 }
