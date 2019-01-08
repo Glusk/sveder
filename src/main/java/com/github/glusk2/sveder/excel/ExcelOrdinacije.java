@@ -8,7 +8,6 @@ import java.util.stream.StreamSupport;
 import com.github.glusk2.sveder.Ordinacija;
 import com.github.glusk2.sveder.Ordinacije;
 
-import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 
@@ -80,42 +79,50 @@ public final class ExcelOrdinacije implements Ordinacije {
                 .stream(wb.getSheetAt(0).spliterator(), false)
                 .skip(ST_META_VRSTIC)
                 .filter(vrstica ->
-                    celica(vrstica, STOLPEC_OE_IZVAJALCA).intValue()
-                    % MODUL != MAGIC_OE_SKUPNO
-                    && celica(vrstica, STOLPEC_ZDRAVNIK).intValue() > 0
-                    && celica(vrstica, STOLPEC_IZVAJALEC).intValue() > 0
+                    new NumericnaCelica(
+                        vrstica,
+                        STOLPEC_OE_IZVAJALCA
+                    ).intValue() % MODUL != MAGIC_OE_SKUPNO
+                    &&
+                    new NumericnaCelica(
+                        vrstica,
+                        STOLPEC_ZDRAVNIK
+                    ).intValue() > 0
+                    &&
+                    new NumericnaCelica(
+                        vrstica,
+                        STOLPEC_IZVAJALEC
+                    ).intValue() > 0
                 )
                 .map(
                     (vrstica) -> new Ordinacija() {
                         @Override
-                        public int izvajalec() {
-                            return celica(vrstica, STOLPEC_IZVAJALEC)
-                                   .intValue();
+                        public Number izvajalec() {
+                            return
+                                new NumericnaCelica(
+                                    vrstica,
+                                    STOLPEC_IZVAJALEC
+                                );
                         }
                         @Override
-                        public int zdravnik() {
-                            return celica(vrstica, STOLPEC_ZDRAVNIK)
-                                  .intValue();
+                        public Number zdravnik() {
+                            return
+                                new NumericnaCelica(
+                                    vrstica,
+                                    STOLPEC_ZDRAVNIK
+                                );
                         }
                         @Override
-                        public double doseganjePovprecja() {
-                            return celica(vrstica, STOLPEC_DOSEGANJE_POVP)
-                                   .doubleValue();
+                        public Number doseganjePovprecja() {
+                            return
+                                new NumericnaCelica(
+                                    vrstica,
+                                    STOLPEC_DOSEGANJE_POVP
+                                );
                         }
                     }
                 )
                 .collect(Collectors.toList());
         }
-    }
-
-    /**
-     * Pomožna metoda za vračanje numeričnih vrednosti celic.
-     *
-     * @param vrstica Vrstica v kateri se nahaja celica.
-     * @param indeksStolpca Prvi element se nahaja na indeksu {@code 0}.
-     * @return Numerična vrednost celice.
-     */
-    private static Number celica(final Row vrstica, final int indeksStolpca) {
-        return vrstica.getCell(indeksStolpca).getNumericCellValue();
     }
 }
