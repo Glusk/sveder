@@ -1,0 +1,253 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>Ordinacijski čas in čakalne dobe</title><META HTTP-EQUIV="Content-Type" CONTENT="text/html;charset=windows-1250">
+<style TYPE="text/css">
+<!--
+A:link    { text-decoration: none; 
+            font-size: 8pt;
+            font-weight: bold;            
+            color: rgb(4,141,17) 
+            }
+A:active  { text-decoration: none; 
+            font-size: 8pt;
+            font-weight: bold;            
+            color: rgb(4,141,17) 
+            }
+A:visited { text-decoration: none; 
+            font-size: 8pt;
+            font-weight: bold;            
+            color: rgb(4,141,17) 
+            }
+A:hover   { text-decoration: underline;
+            font-size: 8pt;
+            color: rgb(3,189,8);
+            font-weight: bold;
+            }
+A.tipi:link    { text-decoration: none; 
+            font-size: 10pt;
+            font-weight: bold;            
+            color: rgb(14,3,141) 
+            }
+A.tipi:visited { text-decoration: none; 
+            font-size: 10pt;
+            font-weight: bold;            
+            color: rgb(14,3,141) 
+            }
+TD.podr-cell-vse
+            {
+            border-color: rgb(0,0,0);
+            border-style: solid;
+            border-width: thin;
+            vertical-align: top;
+            background-color: rgb(255,255,255);
+            font-size: 10pt;
+            font-family: tahoma,verdana,arial,helvetica; 
+            }
+TD.lok
+            {
+            border-color: rgb(0,0,0);
+            border-style: solid;
+            border-width: 0;
+            vertical-align: left;
+            background-color: #FFFFFF;
+            color: rgb(0,0,0);
+            font-size: 10pt;
+            font-family: tahoma,verdana,arial,helvetica;
+            font-weight: bold;
+            }
+TD.naziv-lok
+            {
+            border-color: rgb(0,0,0);
+            border-style: solid;
+            border-width: 0;
+            vertical-align: middle;
+            background-color: #E0FFDF;
+            color: #008000;
+            font-size: 10pt;
+            font-family: tahoma,verdana,arial,helvetica;
+            font-weight: bold;
+            }
+TD.naslov-lok
+            {
+            border-color: rgb(0,0,0);
+            border-style: solid;
+            border-width: 0;
+            vertical-align: middle;
+            background-color: #FFFFFF;
+            color: rgb(0,0,0);
+            font-size: 8pt;
+            font-family: tahoma,verdana,arial,helvetica;
+            }
+TD.naziv
+            {
+            border-color: rgb(0,0,0);
+            border-style: solid;
+            border-width: 0;
+            vertical-align: middle;
+            background-color: #E0FFDF;
+            color: rgb(0,0,0);
+            font-size: 10pt;
+            font-family: tahoma,verdana,arial,helvetica;
+            font-weight: bold;
+            }
+TD.naslov
+            {
+            border-color: rgb(0,0,0);
+            border-style: solid;
+            border-width: 0;
+            vertical-align: middle;
+            background-color: #E0FFDF;
+            color: rgb(0,0,0);
+            font-size: 8pt;
+            font-family: tahoma,verdana,arial,helvetica;
+            }
+TD     
+           {
+            font-size: 10pt;
+            font-family: tahoma,verdana,arial,helvetica;
+            }
+TH
+            {
+            vertical-align: middle;
+            background-color: rgb(198,244,201);
+            color: rgb(0,0,0);
+            font-size: 12pt;
+            font-family: tahoma,verdana,arial,helvetica;
+            font-weight: bold;
+            }
+.pogl
+           {
+            font-size: 12pt;
+            font-family: tahoma,verdana,arial,helvetica;
+            font-weight: bold;
+            color: rgb(0,0,0);
+            }
+.izvajal  { text-decoration: none; 
+            font-size: 16pt;
+            color: rgb(4,141,17) 
+            }
+.ordinacas {
+            font-weight: bold; 
+            ont-size: 10pt; 
+            color: rgb(4,141,17); 
+            font-family: tahoma,verdana,arial,helvetica
+            }
+.izvajalOE  { text-decoration: none; 
+            font-size: 16pt;
+            font-weight: bold;
+            color: rgb(128,0,64) 
+            }
+.zavod
+            {
+            font-size: 10pt;
+            font-family: tahoma,verdana,arial,helvetica;
+            color: rgb(0,0,0);
+            font-weight: bold; 
+            text-align: center
+            }
+.navodila
+            {
+            font-size: 10 pt;
+            font-family: tahoma,verdana,arial,helvetica;
+            color: rgb(0,0,0);
+            }
+.datum
+            {
+            font-size: 8pt;
+            font-family: tahoma,verdana,arial,helvetica;
+            color: rgb(0,0,0);
+            }
+.rez_iskanja
+            {
+            font-size: 8pt;
+            font-family: tahoma,verdana,arial,helvetica;
+            color: rgb(250,31,0);
+            }
+-->
+</style>
+<SCRIPT LANGUAGE="JavaScript">
+   <!--
+
+function formHandler(form){
+var URL = document.form.site.options[document.form.site.selectedIndex].value;
+window.location.href = URL;
+}
+
+function openAWindow( pageToLoad, winName, width, height, center) { 
+
+	xposition=200; yposition=200;
+    if ((parseInt(navigator.appVersion) >= 4 ) && (center)){
+        xposition = (screen.width - width) / 2;
+        yposition = (screen.height - height) / 2;
+    }
+    args = "width=" + width + ","
+    + "height=" + height + ","
+    + "location=0,"
+    + "menubar=0,"
+    + "resizable=1,"
+    + "scrollbars=1,"
+    + "status=0,"
+    + "titlebar=0,"
+    + "toolbar=0,"
+    + "hotkeys=0,"
+    + "screenx=" + xposition + ","  //NN Only
+    + "screeny=" + yposition + ","  //NN Only
+    + "left=" + xposition + ","     //IE Only
+    + "top=" + yposition;           //IE Only
+
+    window.open( pageToLoad,winName,args );
+
+}
+// -->
+</SCRIPT></head>
+<body text="#000000" bgcolor="#FFFFFF" LEFTMARGIN="5" TOPMARGIN="0" MARGINWIDTH="0" MARGINHEIGHT="0" >
+<tabel border="0" cellpadding="0" cellspacing="0" width="470">
+<table noborder cellpadding="0"  width="470" colspan="0"><tr><td noborder align="right">
+<a href="#" onClick="javascript:window.close();">Zapri</a></td></tr>
+<tr><td noborder class="izvajal" bgcolor="e0ffdf">
+ZOBOZDRAVSTVENI ZAVOD D IN G KOPER, POSLOVNA ENOTA ZOBNA AMBULANTA ZA ODRASLE ZAGORJE OB SAVI</td></tr></table>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr valign="top"><td width="108" bgcolor="#FFFFFF"><img width="1" height="1" src="/icons/ecblank.gif" border="0" alt=""></td><td width="12" bgcolor="#FFFFFF"><img width="1" height="1" src="/icons/ecblank.gif" border="0" alt=""></td><td width="384" bgcolor="#FFFFFF"><img width="1" height="1" src="/icons/ecblank.gif" border="0" alt=""></td></tr>
+
+<tr valign="top"><td width="108" bgcolor="#F1F1B4">&nbsp;</td><td width="12" bgcolor="#FFFFFF"><img width="1" height="1" src="/icons/ecblank.gif" border="0" alt=""></td><td width="384" bgcolor="#FFFFFF">&nbsp;</td></tr>
+
+<tr valign="top"><td width="108" bgcolor="#F1F1B4"><div align="right"><font size="2">Dodatni naziv:</font></div></td><td width="12" bgcolor="#FFFFFF"><img width="1" height="1" src="/icons/ecblank.gif" border="0" alt=""></td><td width="384" bgcolor="#FFFFFF"><b><font size="2"></font></b></td></tr>
+
+<tr valign="top"><td width="108" bgcolor="#F1F1B4">&nbsp;</td><td width="12" bgcolor="#FFFFFF"><img width="1" height="1" src="/icons/ecblank.gif" border="0" alt=""></td><td width="384" bgcolor="#FFFFFF">&nbsp;</td></tr>
+</table>
+<table cellPadding=0 width=470 colspan="0" noborder>
+    <tr><td class=ordinacas bgColor=#e0ffdf noborder width="503">
+    Ordinacijski čas
+    </td></tr>
+    <tr><td class=izvajal noborder width="470"><br>
+    <a style="display: inline-block; text-align: center" href="/zzzs/pao/pogizv.nsf/49912aaadaf85317c1256e4a004e2209/5422a3e779b6d0acc125829f00427cd2/$FILE/ZOB%20ZAVOD%20D%20IN%20G%20KOPER_Urn%C4%8CD.xlsx" title="ZOB ZAVOD D IN G KOPER_UrnČD.xlsx"><img src="/zzzs/pao/pogizv.nsf/49912aaadaf85317c1256e4a004e2209/5422a3e779b6d0acc125829f00427cd2/CakalnaDoba/0.122?OpenElement&amp;FieldElemFormat=gif" width="226" height="34" alt="ZOB ZAVOD D IN G KOPER_UrnČD.xlsx" border="0"><span style="display: block">ZOB ZAVOD D IN G KOPER_UrnČD.xlsx</span></a>
+    </td></tr>
+    <tr>
+    <td class=ordinacas bgColor=#e0ffdf noborder width="503">
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+        <tr>
+          <td vAlign=center align=middle width="9%"> </td>
+          <td width="91%">&nbsp; <font FACE="Arial" SIZE="2"><a href="/ZZZS/PAO/pogizv.NSF/Navodilo/Pojasnilo">Pojasnilo
+            o objavljenih ordinacijskih časih in čakalnih dobah</a></font> 
+        </td></tr>
+        <tr>
+          <td width="9%" valign="middle" align="center">
+<img src="http://www.zzzs.si/zzzs/internet/zzzs.nsf/ikona_telefon.gif" width="33" height="28">
+          </td>
+          <td width="91%">&nbsp; 
+	  <a href="http://www.zzzs.si/zzzs/PAO/izvajalci.nsf/sporocila/pravilnost#odg_osb" target=_parent>
+          Skrbniki podatkov na območnih enotah ZZZS</A>
+	</td>
+       </tr>
+      </table>
+</td></tr>
+    <tr>
+    <td class=navodila noborder width="470"></td></tr>
+</table>
+<table noborder cellpadding="0"  width="470" colspan="0"><tr><td noborder class="datum" align="center">
+<br><IMG src="http://www.zzzs.si/zzzs/internet/urejanj1.nsf/html/slike/CR/$FILE/copyright.gif" width="16" height="16">
+<A href="/copyrght.htm" target=_parent>ZZZS</A>, vse pravice pridržane</A></td></tr></table>
+</table></body>
+</html>
