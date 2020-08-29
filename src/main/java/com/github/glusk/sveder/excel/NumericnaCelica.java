@@ -1,4 +1,4 @@
-package com.github.glusk2.sveder.excel;
+package com.github.glusk.sveder.excel;
 
 import org.apache.poi.ss.usermodel.Row;
 

@@ -1,4 +1,4 @@
-package com.github.glusk2.sveder.orodja;
+package com.github.glusk.sveder.orodja;
 
 import java.util.List;
 import java.util.regex.MatchResult;

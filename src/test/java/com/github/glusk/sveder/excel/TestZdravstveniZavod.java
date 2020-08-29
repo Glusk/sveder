@@ -1,10 +1,10 @@
-package com.github.glusk2.sveder.excel;
+package com.github.glusk.sveder.excel;
 
 import static org.junit.Assert.assertEquals;
 
 import java.io.IOException;
 
-import com.github.glusk2.sveder.net.SvederUrl;
+import com.github.glusk.sveder.net.SvederUrl;
 
 import org.junit.Test;
 

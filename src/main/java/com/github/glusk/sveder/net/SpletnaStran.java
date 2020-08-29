@@ -1,4 +1,4 @@
-package com.github.glusk2.sveder.net;
+package com.github.glusk.sveder.net;
 
 import java.io.IOException;
 import java.nio.charset.Charset;

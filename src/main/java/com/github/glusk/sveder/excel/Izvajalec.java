@@ -1,12 +1,12 @@
-package com.github.glusk2.sveder.excel;
+package com.github.glusk.sveder.excel;
 
 import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import com.github.glusk2.sveder.net.SpletnaStran;
-import com.github.glusk2.sveder.net.SvederUrl;
-import com.github.glusk2.sveder.orodja.RegularniIzraz;
+import com.github.glusk.sveder.net.SpletnaStran;
+import com.github.glusk.sveder.net.SvederUrl;
+import com.github.glusk.sveder.orodja.RegularniIzraz;
 
 /**
  * Izvajalec zdravstvenih storitev.
