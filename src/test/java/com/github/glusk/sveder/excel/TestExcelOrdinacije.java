@@ -5,9 +5,12 @@ import static org.junit.Assert.assertArrayEquals;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.util.Locale;
 
 import org.junit.Test;
 
@@ -26,7 +29,12 @@ public final class TestExcelOrdinacije {
                     "%6d %5d %s\r\n",
                     o.izvajalec().intValue(),
                     o.zdravnik().intValue(),
-                    new DecimalFormat("#.##").format(
+                    new DecimalFormat(
+                        "#.##",
+                        new DecimalFormatSymbols(
+                            new Locale("sl")
+                        )
+                    ).format(
                         o.doseganjePovprecja().doubleValue()
                     )
                 )
@@ -34,7 +42,15 @@ public final class TestExcelOrdinacije {
         );
         File tmp = File.createTempFile("tmp", ".txt");
         tmp.deleteOnExit();
-        try (BufferedWriter out = new BufferedWriter(new FileWriter(tmp))) {
+        try (
+            BufferedWriter out =
+                new BufferedWriter(
+                    new FileWriter(
+                        tmp,
+                        StandardCharsets.UTF_8
+                    )
+                )
+        ) {
             out.write(testFileLines.toString());
         }
         assertArrayEquals(
