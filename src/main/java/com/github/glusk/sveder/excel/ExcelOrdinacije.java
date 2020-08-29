@@ -1,12 +1,12 @@
-package com.github.glusk2.sveder.excel;
+package com.github.glusk.sveder.excel;
 
 import java.net.URL;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
-import com.github.glusk2.sveder.Ordinacija;
-import com.github.glusk2.sveder.Ordinacije;
+import com.github.glusk.sveder.Ordinacija;
+import com.github.glusk.sveder.Ordinacije;
 
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;

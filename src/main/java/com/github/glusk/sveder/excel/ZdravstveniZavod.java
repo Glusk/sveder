@@ -1,14 +1,14 @@
-package com.github.glusk2.sveder.excel;
+package com.github.glusk.sveder.excel;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+import com.github.glusk.sveder.net.SpletnaStran;
+import com.github.glusk.sveder.net.SvederUrl;
+import com.github.glusk.sveder.net.UrlNaStrani;
+
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
-
-import com.github.glusk2.sveder.net.SpletnaStran;
-import com.github.glusk2.sveder.net.SvederUrl;
-import com.github.glusk2.sveder.net.UrlNaStrani;
 
 /** Zdravstveni zavod zgrajen iz poti do preglendnice. */
 public final class ZdravstveniZavod {

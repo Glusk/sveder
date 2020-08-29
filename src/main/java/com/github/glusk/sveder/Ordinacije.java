@@ -1,4 +1,4 @@
-package com.github.glusk2.sveder;
+package com.github.glusk.sveder;
 
 import java.util.List;
 

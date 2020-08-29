@@ -1,9 +1,9 @@
-package com.github.glusk2.sveder.net;
+package com.github.glusk.sveder.net;
 
 import java.io.IOException;
 import java.net.URL;
 
-import com.github.glusk2.sveder.orodja.RegularniIzraz;
+import com.github.glusk.sveder.orodja.RegularniIzraz;
 
 /** URL na spletni strani. */
 public final class UrlNaStrani implements SvederUrl {
