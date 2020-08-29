@@ -5,6 +5,7 @@ import static org.junit.Assert.assertArrayEquals;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.text.DecimalFormat;
@@ -34,7 +35,15 @@ public final class TestExcelOrdinacije {
         );
         File tmp = File.createTempFile("tmp", ".txt");
         tmp.deleteOnExit();
-        try (BufferedWriter out = new BufferedWriter(new FileWriter(tmp))) {
+        try (
+            BufferedWriter out =
+                new BufferedWriter(
+                    new FileWriter(
+                        tmp,
+                        StandardCharsets.UTF_8
+                    )
+                )
+        ) {
             out.write(testFileLines.toString());
         }
         assertArrayEquals(
