@@ -59,7 +59,7 @@ public final class TestExcelOrdinacije {
             Files.readAllBytes(
                 Paths.get(
                     this.getClass()
-                        .getResource("SeznamOrdinacij.txt")
+                        .getResource("seznamOrdinacij.txt")
                         .toURI()
                 )
             )
