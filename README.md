@@ -21,6 +21,7 @@ strukturirane podatke v naslednji obliki in obsegu:
       "id_zdravnik": "number",
       "ime_priimek": "string"
     },
+    "id_dejavnost": "number",
     "doseganje_povprecja": "number",
     "lokacija": {
       "id_lokacija": "number",
