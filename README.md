@@ -16,8 +16,12 @@ strukturirane podatke v naslednji obliki in obsegu:
 
 ``` json
 {
-  "izvajalec": {
-    "id_izvajalec": "number",
+  "ordinacija": {
+    "zdravnik": {
+      "id_zdravnik": "number",
+      "ime_priimek": "string"
+    },
+    "doseganje_povprecja": "number",
     "lokacija": {
       "id_lokacija": "number",
       "naziv": "string",
@@ -67,11 +71,6 @@ strukturirane podatke v naslednji obliki in obsegu:
       }
     }
   },
-  "zdravnik": {
-    "id_zdravnik": "number",
-    "ime_priimek": "string"
-  },
-  "doseganje_povprecja": "number"
 }
 ```
 
