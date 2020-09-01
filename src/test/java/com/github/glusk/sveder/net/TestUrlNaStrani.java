@@ -15,7 +15,7 @@ public final class TestUrlNaStrani {
                 new SpletnaStran(
                     new SvederUrl.UrlOvoj(
                         this.getClass()
-                            .getResource("stranZLinkom.html")
+                            .getResource("stranZLinkom.txt")
                             .toString()
                     )
                 ),
@@ -32,7 +32,7 @@ public final class TestUrlNaStrani {
                 new SpletnaStran(
                     new SvederUrl.UrlOvoj(
                         this.getClass()
-                            .getResource("stranZavoda.html")
+                            .getResource("stranZavoda.txt")
                             .toString()
                     )
                 ),
