@@ -16,7 +16,7 @@ public final class TestIzvajalec {
                 new SpletnaStran(
                     new SvederUrl.UrlOvoj(
                         this.getClass()
-                            .getResource("seznamZasebnikov.txt")
+                            .getResource("seznamZavodov.txt")
                             .toString()
                     )
                 )
