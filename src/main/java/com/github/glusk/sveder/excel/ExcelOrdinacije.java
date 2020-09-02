@@ -48,6 +48,8 @@ public final class ExcelOrdinacije implements Ordinacije {
     private static final int STOLPEC_IZVAJALEC = 2;
     /** Index stolpca "Šifra zdravnika". */
     private static final int STOLPEC_ZDRAVNIK = 6;
+    /** Index stolpca "Šifra ZZZS dejavnosti". */
+    private static final int STOLPEC_DEJAVNOST = 8;
     /** Index stolpca "Doseganje povprečja". */
     private static final int STOLPEC_DOSEGANJE_POVP = 18;
 
@@ -103,6 +105,10 @@ public final class ExcelOrdinacije implements Ordinacije {
                                     vrstica,
                                     STOLPEC_IZVAJALEC
                                 );
+                        }
+                        public String dejavnost() {
+                            return vrstica.getCell(STOLPEC_DEJAVNOST)
+                                          .getStringCellValue();
                         }
                         @Override
                         public Number zdravnik() {

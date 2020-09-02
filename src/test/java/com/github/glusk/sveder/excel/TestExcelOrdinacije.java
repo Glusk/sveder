@@ -26,8 +26,9 @@ public final class TestExcelOrdinacije {
         .forEach(
             o -> testFileLines.append(
                 String.format(
-                    "%6d %5d %s\r\n",
+                    "%5d %s %5d %s\r\n",
                     o.izvajalec().intValue(),
+                    o.dejavnost(),
                     o.zdravnik().intValue(),
                     new DecimalFormat(
                         "#.##",
