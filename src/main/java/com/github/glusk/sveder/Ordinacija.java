@@ -21,11 +21,11 @@ public interface Ordinacija {
      */
     String dejavnost();
     /**
-     * Šifra zobozdravnika, nosilca ordinacije.
+     * Zobozdravnik, ki je nosilec te ordinacije.
      *
-     * @return Pozitivno celo število, omejeno na 5 mest.
+     * @return zobozdravnik, ki je nosilec te ordinacije
      */
-    Number zdravnik();
+    Zdravnik zdravnik();
     /**
      * Količnik doseganja povprečja ordinacije.
      *

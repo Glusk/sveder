@@ -29,7 +29,7 @@ public final class TestExcelOrdinacije {
                     "%5d %s %5d %s\r\n",
                     o.izvajalec().intValue(),
                     o.dejavnost(),
-                    o.zdravnik().intValue(),
+                    o.zdravnik().sifra().intValue(),
                     new DecimalFormat(
                         "#.##",
                         new DecimalFormatSymbols(

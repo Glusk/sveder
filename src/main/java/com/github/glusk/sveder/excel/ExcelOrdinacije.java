@@ -7,6 +7,7 @@ import java.util.stream.StreamSupport;
 
 import com.github.glusk.sveder.Ordinacija;
 import com.github.glusk.sveder.Ordinacije;
+import com.github.glusk.sveder.Zdravnik;
 
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
@@ -47,7 +48,9 @@ public final class ExcelOrdinacije implements Ordinacije {
     /** Index stolpca "Šifra izvajalca". */
     private static final int STOLPEC_IZVAJALEC = 2;
     /** Index stolpca "Šifra zdravnika". */
-    private static final int STOLPEC_ZDRAVNIK = 6;
+    private static final int STOLPEC_ZDRAVNIK_SIFRA = 6;
+    /** Index stolpca "Priimek in ime zdravnika". */
+    private static final int STOLPEC_ZDRAVNIK_IME_PRIIMEK = 7;
     /** Index stolpca "Šifra ZZZS dejavnosti". */
     private static final int STOLPEC_DEJAVNOST = 8;
     /** Index stolpca "Doseganje povprečja". */
@@ -73,6 +76,7 @@ public final class ExcelOrdinacije implements Ordinacije {
      * @throws Exception Če pride do napake pri branju {@code .xls} datoteke.
      */
     @Override
+    @SuppressWarnings("checkstyle:linelength")
     public List<Ordinacija> ordinacije() throws Exception {
         try (
             Workbook wb = WorkbookFactory.create(potDoPreglednice.openStream())
@@ -88,7 +92,7 @@ public final class ExcelOrdinacije implements Ordinacije {
                     &&
                     new NumericnaCelica(
                         vrstica,
-                        STOLPEC_ZDRAVNIK
+                        STOLPEC_ZDRAVNIK_SIFRA
                     ).intValue() > 0
                     &&
                     new NumericnaCelica(
@@ -111,12 +115,24 @@ public final class ExcelOrdinacije implements Ordinacije {
                                           .getStringCellValue();
                         }
                         @Override
-                        public Number zdravnik() {
+                        public Zdravnik zdravnik() {
                             return
-                                new NumericnaCelica(
-                                    vrstica,
-                                    STOLPEC_ZDRAVNIK
-                                );
+                                new Zdravnik() {
+                                    @Override
+                                    public Number sifra() {
+                                        return
+                                            new NumericnaCelica(
+                                                vrstica,
+                                                STOLPEC_ZDRAVNIK_SIFRA
+                                            );
+                                    }
+                                    @Override
+                                    public String imeInPriimek() {
+                                        return
+                                            vrstica.getCell(STOLPEC_ZDRAVNIK_IME_PRIIMEK)
+                                                   .getStringCellValue();
+                                    }
+                                };
                         }
                         @Override
                         public Number doseganjePovprecja() {
