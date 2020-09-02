@@ -110,6 +110,7 @@ public final class ExcelOrdinacije implements Ordinacije {
                                     STOLPEC_IZVAJALEC
                                 );
                         }
+                        @Override
                         public String dejavnost() {
                             return vrstica.getCell(STOLPEC_DEJAVNOST)
                                           .getStringCellValue();
