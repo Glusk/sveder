@@ -30,7 +30,7 @@ public final class SvederIT {
         Ordinacija o = rezultat.get(0);
         assertEquals(25333, o.izvajalec().intValue());
         assertEquals(7809, o.zdravnik().sifra().intValue());
-        assertEquals("GAJIĆ  ŽELJKO", o.zdravnik().imeInPriimek());
+        assertEquals("GAJIĆ ŽELJKO", o.zdravnik().imeInPriimek());
         assertEquals("404101", o.dejavnost());
         assertEquals(119.13, o.doseganjePovprecja().doubleValue(), .001f);
     }

@@ -183,7 +183,8 @@ public final class ExcelOrdinacije implements Ordinacije {
                                         return
                                             vrstica.getCell(STOLPEC_ZDRAVNIK_IME_PRIIMEK)
                                                    .getStringCellValue()
-                                                   .strip();
+                                                   .strip()
+                                                   .replaceAll(" +", " ");
                                     }
                                 };
                         }
