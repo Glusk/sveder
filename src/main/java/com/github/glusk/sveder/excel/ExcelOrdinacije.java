@@ -77,9 +77,8 @@ public final class ExcelOrdinacije implements Ordinacije {
     private final SvederUrl urlPreglednice;
 
     /**
-     * Na spletu poišče najbolj ažurno preglednico aktivnih zobozdravnikov in
-     * zgradi nov objekt tipa {@code ExcelOrdinacije} z potjo do {@code .xls}
-     * datoteke preglednice.
+     * Zgradi nov objekt tipa {@code ExcelOrdinacije} iz URL naslova najbolj
+     * ažurne preglednice aktivnih zobozdravnikov.
      */
     public ExcelOrdinacije() {
         this(
