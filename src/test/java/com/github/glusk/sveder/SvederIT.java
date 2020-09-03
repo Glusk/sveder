@@ -19,7 +19,7 @@ public final class SvederIT {
                     this.getClass()
                         .getResource("excel/ZOB_1_8_2020.XLSX")
                 ),
-                "404101",
+                Dejavnost.ZDRAVLJENJE_ODRASLI,
                 "ŽELJKO",
                 "GAJIĆ"
             )
@@ -30,7 +30,7 @@ public final class SvederIT {
         assertEquals(25333, o.izvajalec().intValue());
         assertEquals(7809, o.zdravnik().sifra().intValue());
         assertEquals("GAJIĆ ŽELJKO", o.zdravnik().imeInPriimek());
-        assertEquals("404101", o.dejavnost());
+        assertEquals(Dejavnost.ZDRAVLJENJE_ODRASLI, o.dejavnost());
         assertEquals(119.13, o.doseganjePovprecja().doubleValue(), .001f);
     }
 }

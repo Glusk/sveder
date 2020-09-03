@@ -21,7 +21,10 @@ strukturirane podatke v naslednji obliki in obsegu:
       "id_zdravnik": "number",
       "ime_priimek": "string"
     },
-    "id_dejavnost": "number",
+    "dejavnost": {
+      "id_dejavnost": "string",
+      "naziv": "string"
+    },
     "doseganje_povprecja": "number",
     "lokacija": {
       "id_lokacija": "number",
@@ -81,6 +84,7 @@ Najdi ordinacije na podlagi *imena* zobozdravnika in *dejavnosti*, ki jo opravlj
 
 ``` java
 import java.nio.IOException;
+import com.github.glusk.sveder.Dejavnost;
 import com.github.glusk.sveder.excel.ExcelOrdinacije;
 import com.github.glusk.sveder.iskanje.OrdinacijeImeDejavnost;
 public class App {
@@ -88,7 +92,7 @@ public class App {
         String json =
             new OrdinacijeImeDejavnost(
                 new ExcelOrdinacije(),
-                "404101", // ZOBOZDR. DEJAVNOST-ZDRAVLJENJE ODRASLIH
+                Dejavnost.ZDRAVLJENJE_ODRASLI,
                 "POLDE",
                 "NERODA"
             ).json().toString(2);
