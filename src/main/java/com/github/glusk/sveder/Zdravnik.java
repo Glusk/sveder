@@ -1,7 +1,9 @@
 package com.github.glusk.sveder;
 
+import org.json.JSONObject;
+
 /** Zobozdravnik v sklopu javne mreže. */
-public interface Zdravnik {
+public interface Zdravnik extends SvederTip {
     /**
      * Šifra zobozdravnika.
      *
@@ -14,4 +16,11 @@ public interface Zdravnik {
      * @return ime in priimek zobozdravnika z velikimi tiskanimi črkami
      */
     String imeInPriimek();
+
+    @Override
+    default JSONObject json() {
+        return new JSONObject()
+            .put("id_zdravnik", sifra().intValue())
+            .put("ime_priimek", imeInPriimek());
+    }
 }

@@ -1,7 +1,9 @@
 package com.github.glusk.sveder;
 
+import org.json.JSONObject;
+
 /** Zobozdravstvena ordinacija v sklopu javne mreže. */
-public interface Ordinacija {
+public interface Ordinacija extends SvederTip {
     /**
      * Šifra izvajalca zdravstvenih storitev pri katerem je ordinacija
      * registrirana.
@@ -34,4 +36,13 @@ public interface Ordinacija {
      * @return Pozitivo decimalno število.
      */
     Number doseganjePovprecja();
+
+    @Override
+    default JSONObject json() {
+        return new JSONObject()
+            .put("id_izvajalec", izvajalec().intValue())
+            .put("zdravnik", zdravnik().json())
+            .put("id_dejavnost", dejavnost())
+            .put("doseganje_povprecja", doseganjePovprecja().doubleValue());
+    }
 }
