@@ -168,7 +168,7 @@ public final class ExcelOrdinacije implements Ordinacije {
                                                   .getStringCellValue()
                                                   .strip();
                             for (Dejavnost dejavnost : Dejavnost.values()) {
-                                if (dejavnost.toString().equals(sifra)) {
+                                if (dejavnost.sifra().equals(sifra)) {
                                     return dejavnost;
                                 }
                             }

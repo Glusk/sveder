@@ -32,8 +32,12 @@ public enum Dejavnost implements SvederTip {
         this.sifra = sifra;
     }
 
-    @Override
-    public String toString() {
+    /**
+     * Vrne sifro te dejavnosti.
+     *
+     * @return 6-mesten niz - sifra dejavnosti
+     */
+    public String sifra() {
         return sifra;
     }
 
