@@ -113,7 +113,8 @@ public final class ExcelOrdinacije implements Ordinacije {
                         @Override
                         public String dejavnost() {
                             return vrstica.getCell(STOLPEC_DEJAVNOST)
-                                          .getStringCellValue();
+                                          .getStringCellValue()
+                                          .strip();
                         }
                         @Override
                         public Zdravnik zdravnik() {
@@ -131,7 +132,8 @@ public final class ExcelOrdinacije implements Ordinacije {
                                     public String imeInPriimek() {
                                         return
                                             vrstica.getCell(STOLPEC_ZDRAVNIK_IME_PRIIMEK)
-                                                   .getStringCellValue();
+                                                   .getStringCellValue()
+                                                   .strip();
                                     }
                                 };
                         }
