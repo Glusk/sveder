@@ -10,7 +10,8 @@ public interface SvederTip {
      * Vrne tip v JSON formatu.
      *
      * @return json izpis tega tipa
-     * @throws IOException če pride do napake pri branju podatkov tega Sveder tipa
+     * @throws IOException če pride do napake pri branju podatkov tega Sveder
+     *                     tipa
      */
     JSONObject json() throws IOException;
 }
