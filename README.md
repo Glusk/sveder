@@ -75,6 +75,27 @@ strukturirane podatke v naslednji obliki in obsegu:
 }
 ```
 
+## Uporaba
+
+Najdi ordinacije na podlagi *imena* zobozdravnika in *dejavnosti*, ki jo opravlja:
+
+``` java
+import java.nio.IOException;
+import com.github.glusk.sveder.excel.ExcelOrdinacije;
+import com.github.glusk.sveder.iskanje.OrdinacijeImeDejavnost;
+public class App {
+    public static void main(String[] args) throws IOException {
+        String json =
+            new OrdinacijeImeDejavnost(
+                new ExcelOrdinacije(),
+                "404101", // ZOBOZDR. DEJAVNOST-ZDRAVLJENJE ODRASLIH
+                "POLDE",
+                "NERODA"
+            ).json().toString(2);
+        System.out.println(json);
+    }
+}
+```
 ---
 
 *Logo used: <a href="https://vectorified.com/bioshock-icon">Bioshock Icon</a>*

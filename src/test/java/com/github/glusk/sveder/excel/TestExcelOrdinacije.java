@@ -19,16 +19,17 @@ public final class TestExcelOrdinacije {
     public void izpiseVseOrdinacije() throws Exception {
         StringBuilder testFileLines = new StringBuilder();
         new ExcelOrdinacije(
-            this.getClass().getResource("Zob_12_18.xls")
+            this.getClass().getResource("ZOB_1_8_2020.XLSX")
         )
         .ordinacije()
         .stream()
         .forEach(
             o -> testFileLines.append(
                 String.format(
-                    "%6d %5d %s\r\n",
+                    "%5d %s %5d %s\r\n",
                     o.izvajalec().intValue(),
-                    o.zdravnik().intValue(),
+                    o.dejavnost(),
+                    o.zdravnik().sifra().intValue(),
                     new DecimalFormat(
                         "#.##",
                         new DecimalFormatSymbols(
