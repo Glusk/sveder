@@ -8,18 +8,33 @@ import java.util.stream.StreamSupport;
 import com.github.glusk.sveder.Ordinacija;
 import com.github.glusk.sveder.Ordinacije;
 import com.github.glusk.sveder.Zdravnik;
+import com.github.glusk.sveder.net.SpletnaStran;
+import com.github.glusk.sveder.net.SvederUrl;
+import com.github.glusk.sveder.net.UrlNaStrani;
 
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 
 /**
- * Ordinacije iz {@code .xls} preglednice.
+ * Ordinacije iz {@code .xls} preglednice s seznamom aktivnih zobozdravnikov.
+ * <p>
+ * Preglednice Zavod za zdravstveno zavarovanje mesečno objalvlja na svojih
+ * spletnih straneh.
  *
  * @see <a href="https://partner.zzzs.si/wps/portal/portali/aizv/zdravstvene_storitve/izbira_osebnega_zdravnika/sezn_akt_zob_za_odrasle_in_mladino">
  *      ZZZS - Seznam aktivnih zobozdravnikov za odrasle in mladino</a>
  */
 public final class ExcelOrdinacije implements Ordinacije {
-
+    /** Https naslov strežnika ZZZS. */
+    private static final String STREZNIK = "https://partner.zzzs.si";
+    /** Relativna pot do strani aktivnih zobozdravnikov na {@code STREZNIK}. */
+    @SuppressWarnings("checkstyle:linelength")
+    private static final String RELATIVNA_POT = "/wps/portal/portali/aizv/zdravstvene_storitve/izbira_osebnega_zdravnika/sezn_akt_zob_za_odrasle_in_mladino";
+    /** Spletni naslov strani z seznamom preglednic aktivnih zobozdravnikov. */
+    private static final String URL_STRANI = STREZNIK + RELATIVNA_POT;
+    /** Zadnji konec url naslova {@code .xls} preglednic. */
+    @SuppressWarnings("checkstyle:linelength")
+    private static final String PREGLEDNICE_REP = "/!ut/p/z1/lZDNCsIwEIQfKRPz0_YY1JpUa61gW3ORnCSg1YP4_EbwImps57IsfLM7DLGkI7Z3d390N3_p3SnseysPnM7NglUw1ZpzKNWEmW0YZELaKFBLYkf507yZwWynusyXBQNjw_wSpdIGVKe8UDBCrkQisglAh_nxQwoj838CNn6-JTb64tngO_CloihQ0xcQK-lfzOt5F9TBG68eA7bkog!!/dz/d5/L2dBISEvZ0FBIS9nQSEh/p0/IZ7_41EIG3O0I80C20AMRSECTR20C6=CZ6_41EIG3O0ION440AAVON49P3067=NEst_datoteke!\\d*==/";
     /**
      * Modul za testiranje posebnih šifer območnih enot izvajalcev.
      *
@@ -57,17 +72,51 @@ public final class ExcelOrdinacije implements Ordinacije {
     private static final int STOLPEC_DOSEGANJE_POVP = 18;
 
     /** URL lokacije {@code .xls} datoteke. */
-    private final URL potDoPreglednice;
+    private final SvederUrl urlPreglednice;
+
+    /**
+     * Na spletu poišče najbolj ažurno preglednico aktivnih zobozdravnikov in
+     * zgradi nov objekt tipa {@code ExcelOrdinacije} z potjo do {@code .xls}
+     * datoteke preglednice.
+     */
+    public ExcelOrdinacije() {
+        this(
+            new UrlNaStrani(
+                new SpletnaStran(
+                    new SvederUrl.UrlOvoj(URL_STRANI)
+                ),
+                STREZNIK,
+                RELATIVNA_POT + PREGLEDNICE_REP
+            )
+        );
+    }
 
     /**
      * Zgradi nov objekt tipa {@code ExcelOrdinacije} z potjo do {@code .xls}
      * datoteke.
+     * <p>
+     * Za konstruktor je uporaben za testiranje oziroma v primeru, ko bi radi
+     * zgradili {@code ExcelOrdinacije} iz že vnaprej prenešene preglednice.
      *
      * @param urlPreglednice Pot do {@code .xls} daoteteke aktivnih
      *                       zobozdravnikov.
      */
     public ExcelOrdinacije(final URL urlPreglednice) {
-        this.potDoPreglednice = urlPreglednice;
+        this(() -> urlPreglednice);
+    }
+
+    /**
+     * Zgradi nov objekt tipa {@code ExcelOrdinacije} z potjo do {@code .xls}
+     * datoteke.
+     * <p>
+     * Za konstruktor je uporaben za testiranje oziroma v primeru, ko bi radi
+     * zgradili {@code ExcelOrdinacije} iz že vnaprej prenešene preglednice.
+     *
+     * @param urlPreglednice Pot do {@code .xls} daoteteke aktivnih
+     *                       zobozdravnikov.
+     */
+    public ExcelOrdinacije(final SvederUrl urlPreglednice) {
+        this.urlPreglednice = urlPreglednice;
     }
 
     /**
@@ -79,7 +128,8 @@ public final class ExcelOrdinacije implements Ordinacije {
     @SuppressWarnings("checkstyle:linelength")
     public List<Ordinacija> ordinacije() throws Exception {
         try (
-            Workbook wb = WorkbookFactory.create(potDoPreglednice.openStream())
+            Workbook wb =
+                WorkbookFactory.create(urlPreglednice.url().openStream())
         ) {
             return StreamSupport
                 .stream(wb.getSheetAt(0).spliterator(), false)
