@@ -1,5 +1,6 @@
 package com.github.glusk.sveder.excel;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -126,7 +127,7 @@ public final class ExcelOrdinacije implements Ordinacije {
      */
     @Override
     @SuppressWarnings("checkstyle:linelength")
-    public List<Ordinacija> ordinacije() throws Exception {
+    public List<Ordinacija> ordinacije() throws IOException {
         try (
             Workbook wb =
                 WorkbookFactory.create(urlPreglednice.url().openStream())
