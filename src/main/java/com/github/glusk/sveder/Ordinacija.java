@@ -12,16 +12,11 @@ public interface Ordinacija extends SvederTip {
      */
     Number izvajalec();
     /**
-     * Šifra dejavnosti.
-     * <p>
-     * <ul>
-     *   <li>404101 - ZOBOZDR. DEJAVNOST-ZDRAVLJENJE ODRASLIH</li>
-     *   <li>404103 - ZOBOZDR. DEJAVNOST-ZDRAVLJENJE MLADINE</li>
-     *   <li>404105 - ZOBOZDR. DEJAVNOST-ZDRAVLJENJE ŠTUDENTOV</li>
-     * </ul>
-     * @return Pozitivno celo število, omejeno na 6 mest.
+     * Vrne dejavnost, ki se izvaja v tej ordinaciji.
+     *
+     * @return {@link Dejavnost} te ordinacije
      */
-    String dejavnost();
+    Dejavnost dejavnost();
     /**
      * Zobozdravnik, ki je nosilec te ordinacije.
      *
@@ -42,7 +37,7 @@ public interface Ordinacija extends SvederTip {
         return new JSONObject()
             .put("id_izvajalec", izvajalec().intValue())
             .put("zdravnik", zdravnik().json())
-            .put("id_dejavnost", dejavnost())
+            .put("dejavnost", dejavnost().json())
             .put("doseganje_povprecja", doseganjePovprecja().doubleValue());
     }
 }

@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.github.glusk.sveder.Dejavnost;
 import com.github.glusk.sveder.Ordinacija;
 import com.github.glusk.sveder.Ordinacije;
 
@@ -14,12 +15,8 @@ import com.github.glusk.sveder.Ordinacije;
 public class OrdinacijeImeDejavnost implements Ordinacije {
     /** Baza podatkov po kateri filtriramo. */
     private Ordinacije baza;
-    /**
-     * Šifra dejavnosti iskane ordinacije.
-     *
-     * @see Ordinacija#dejavnost()
-     */
-    private String dejavnost;
+    /** Dejavnost iskane ordinacije. */
+    private Dejavnost dejavnost;
     /**
      * Regularni izraz, ki bo uporabljen za iskanje zobozdravnika po imenu
      * in priimku.
@@ -34,7 +31,7 @@ public class OrdinacijeImeDejavnost implements Ordinacije {
      * priimek.
      *
      * @param baza baza podatkov po kateri filtriramo
-     * @param dejavnost šifra dejavnosti iskane ordinacije
+     * @param dejavnost dejavnost iskane ordinacije
      * @param ime ime zobozdravnika, nosilca iskane ordinacije, z velikimi
      *            začetnicami
      * @param priimek priimek zobozdravnika, nosilca iskane ordinacije, z
@@ -43,7 +40,7 @@ public class OrdinacijeImeDejavnost implements Ordinacije {
      */
     public OrdinacijeImeDejavnost(
         final Ordinacije baza,
-        final String dejavnost,
+        final Dejavnost dejavnost,
         final String ime,
         final String priimek
     ) {
@@ -62,14 +59,14 @@ public class OrdinacijeImeDejavnost implements Ordinacije {
      * <em>ime zdravnika, šifra dejavnosti</em>.
      *
      * @param baza baza podatkov po kateri filtriramo
-     * @param dejavnost šifra dejavnosti iskane ordinacije
+     * @param dejavnost dejavnost iskane ordinacije
      * @param regexImePriimek regularni izraz, ki bo uporabljen za iskanje
      *                        zobozdravnika po imenu in priimku
      * @see Ordinacija#dejavnost()
      */
     public OrdinacijeImeDejavnost(
         final Ordinacije baza,
-        final String dejavnost,
+        final Dejavnost dejavnost,
         final String regexImePriimek
     ) {
         this.baza = baza;

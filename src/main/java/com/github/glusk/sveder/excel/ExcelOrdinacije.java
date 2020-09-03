@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
+import com.github.glusk.sveder.Dejavnost;
 import com.github.glusk.sveder.Ordinacija;
 import com.github.glusk.sveder.Ordinacije;
 import com.github.glusk.sveder.Zdravnik;
@@ -162,10 +163,21 @@ public final class ExcelOrdinacije implements Ordinacije {
                                 );
                         }
                         @Override
-                        public String dejavnost() {
-                            return vrstica.getCell(STOLPEC_DEJAVNOST)
-                                          .getStringCellValue()
-                                          .strip();
+                        public Dejavnost dejavnost() {
+                            String sifra = vrstica.getCell(STOLPEC_DEJAVNOST)
+                                                  .getStringCellValue()
+                                                  .strip();
+                            for (Dejavnost dejavnost : Dejavnost.values()) {
+                                if (dejavnost.toString().equals(sifra)) {
+                                    return dejavnost;
+                                }
+                            }
+                            throw new RuntimeException(
+                                String.format(
+                                    "Neveljavna šifra dejavnosti: \"%s\"",
+                                    sifra
+                                )
+                            );
                         }
                         @Override
                         public Zdravnik zdravnik() {
