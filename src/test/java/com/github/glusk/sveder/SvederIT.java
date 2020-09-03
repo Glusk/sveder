@@ -4,9 +4,9 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import com.github.glusk.sveder.excel.ExcelOrdinacije;
+import com.github.glusk.sveder.iskanje.OrdinacijeImeDejavnost;
 
 import org.junit.Test;
 
@@ -14,17 +14,16 @@ public final class SvederIT {
     @Test
     public void najdeOrdinacijoPoKljucuZdravnikDejavnost() throws Exception {
         List<Ordinacija> rezultat =
-            new ExcelOrdinacije(
-                this.getClass().getResource("excel/ZOB_1_8_2020.XLSX")
+            new OrdinacijeImeDejavnost(
+                new ExcelOrdinacije(
+                    this.getClass()
+                        .getResource("excel/ZOB_1_8_2020.XLSX")
+                ),
+                "404101",
+                "ŽELJKO",
+                "GAJIĆ"
             )
-            .ordinacije()
-            .stream()
-            .filter(o ->
-                o.dejavnost().equals("404101")
-                &&
-                o.zdravnik().imeInPriimek().matches(".*GAJIĆ.*ŽELJKO.*")
-            )
-            .collect(Collectors.toList());
+            .ordinacije();
 
         assertTrue(rezultat.size() == 1);
         Ordinacija o = rezultat.get(0);
