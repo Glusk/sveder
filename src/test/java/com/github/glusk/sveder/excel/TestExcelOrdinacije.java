@@ -28,7 +28,7 @@ public final class TestExcelOrdinacije {
                 String.format(
                     "%5d %s %5d %s\r\n",
                     o.izvajalec().intValue(),
-                    o.dejavnost(),
+                    o.dejavnost().sifra(),
                     o.zdravnik().sifra().intValue(),
                     new DecimalFormat(
                         "#.##",
