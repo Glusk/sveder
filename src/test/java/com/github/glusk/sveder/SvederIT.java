@@ -15,7 +15,7 @@ public final class SvederIT {
     public void najdeOrdinacijoPoKljucuZdravnikDejavnost() throws Exception {
         List<Ordinacija> rezultat =
             new ExcelOrdinacije(
-                this.getClass().getResource("excel/Zob_12_18.xls")
+                this.getClass().getResource("excel/ZOB_1_8_2020.XLSX")
             )
             .ordinacije()
             .stream()
@@ -32,6 +32,6 @@ public final class SvederIT {
         assertEquals(7809, o.zdravnik().sifra().intValue());
         assertEquals("GAJIĆ  ŽELJKO", o.zdravnik().imeInPriimek());
         assertEquals("404101", o.dejavnost());
-        assertEquals(116.11, o.doseganjePovprecja().doubleValue(), .001f);
+        assertEquals(119.13, o.doseganjePovprecja().doubleValue(), .001f);
     }
 }

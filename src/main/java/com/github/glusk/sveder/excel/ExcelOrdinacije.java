@@ -69,7 +69,7 @@ public final class ExcelOrdinacije implements Ordinacije {
     /** Index stolpca "Šifra ZZZS dejavnosti". */
     private static final int STOLPEC_DEJAVNOST = 8;
     /** Index stolpca "Doseganje povprečja". */
-    private static final int STOLPEC_DOSEGANJE_POVP = 18;
+    private static final int STOLPEC_DOSEGANJE_POVP = 19;
 
     /** URL lokacije {@code .xls} datoteke. */
     private final SvederUrl urlPreglednice;
