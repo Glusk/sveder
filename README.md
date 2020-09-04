@@ -4,15 +4,15 @@
 
 [![Build Status](https://travis-ci.com/Glusk/sveder.svg?branch=master)](https://travis-ci.com/Glusk/sveder)
 
-Java knjižnica za *vrtanje* po javno-dostopnih podatkih o zobozdravnikih v
-javni mreži.
+Java knjižnica za *vrtanje* po javno-dostopnih podatkih o zobozdravstvenih
+ordinacijah, ki so del javne mreže.
 
 ## Motivacija
 
-Iz javno dostopnih podatkov je prekleto težko zbrati ključne podatke o posameznem zobozdravniku.
+Iz javno dostopnih podatkov je prekleto težko zbrati ključne podatke o posamezni ordinaciji.
 
-Na podlagi *imena* zobozdravnika in *dejavnosti*, ki jo opravlja, bi si želeli enostavno  pridobiti
-strukturirane podatke v naslednji obliki in obsegu:
+Želeli bi si enostavno  pridobiti strukturirane podatke javnih zobozdravsvenih ordinacij
+v naslednji obliki in obsegu:
 
 ``` json
 {
