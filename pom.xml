@@ -7,6 +7,12 @@
   <version>1.0-SNAPSHOT</version>
   <name>sveder</name>
   <url>http://maven.apache.org</url>
+  <licenses>
+    <license>
+      <name>MIT License</name>
+      <url>https://github.com/Glusk/sveder/blob/master/LICENSE.md</url>
+    </license>
+  </licenses>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
