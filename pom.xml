@@ -17,6 +17,19 @@
       <url>https://github.com/Glusk/sveder/blob/master/LICENSE.md</url>
     </license>
   </licenses>
+  <developers>
+    <developer>
+      <name>Janez Kuhar</name>
+      <email>janez.kuhar@protonmail.com</email>
+      <organization>Github</organization>
+      <organizationUrl>https://github.com/Glusk</organizationUrl>
+    </developer>
+  </developers>
+  <scm>
+    <connection>scm:git:https://github.com/Glusk/sveder.git</connection>
+    <developerConnection>scm:git:https://github.com/Glusk/sveder.git</developerConnection>
+    <url>https://github.com/Glusk/sveder</url>
+  </scm>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
