@@ -4,6 +4,9 @@
 
 [![Build Status](https://travis-ci.com/Glusk/sveder.svg?branch=master)](https://travis-ci.com/Glusk/sveder)
 
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.glusk/sveder/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.glusk/sveder)
+[![javadoc](https://javadoc.io/badge2/com.github.glusk/sveder/javadoc.svg)](https://javadoc.io/doc/com.github.glusk/sveder)
+
 Java knjižnica za *vrtanje* po javno-dostopnih podatkih o zobozdravstvenih
 ordinacijah, ki so del javne mreže.
 
