@@ -121,6 +121,7 @@
           <configuration>
             <links>
               <link>https://poi.apache.org/apidocs/4.1/</link>
+              <link>https://stleary.github.io/JSON-java/</link>
             </links>
           </configuration>
           <executions>

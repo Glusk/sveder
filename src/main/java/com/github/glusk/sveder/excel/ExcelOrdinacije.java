@@ -123,7 +123,7 @@ public final class ExcelOrdinacije implements Ordinacije {
     /**
      * {@inheritDoc}
      *
-     * @throws Exception Če pride do napake pri branju {@code .xls} datoteke.
+     * @throws IOException Če pride do napake pri branju {@code .xls} datoteke.
      */
     @Override
     @SuppressWarnings("checkstyle:linelength")
