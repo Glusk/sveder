@@ -21,7 +21,7 @@ public final class TestZdravstveniZavod {
                             .toString()
                     )
                 )
-                .preglednicaZZZS()
+                .preglednica()
                 .getSheet("NosilciTimaIZV")
                 .getRow(1),
                 0
