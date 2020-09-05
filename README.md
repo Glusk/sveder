@@ -20,6 +20,7 @@ v naslednji obliki in obsegu:
 ``` json
 {
   "ordinacija": {
+    "id_izvajalec": "number",
     "zdravnik": {
       "id_zdravnik": "number",
       "ime_priimek": "string"
