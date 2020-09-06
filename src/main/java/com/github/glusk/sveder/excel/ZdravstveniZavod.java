@@ -18,7 +18,7 @@ import org.apache.poi.ss.usermodel.WorkbookFactory;
  * <p>
  * Vsaka taka enota ima lahko eno ali več podenot, ki jih ZZZS imenuje
  * <em>izpostava</em> oziroma <em>območna enota</em>. Sveder ne dela razlik
- * med <em>enoto</em> in </em>podenoto</em> - oboje smatra kot
+ * med <em>enoto</em> in <em>podenoto</em> - oboje smatra kot
  * {@code ZdravstveniZavod}.
  * <p>
  * Za potrebe Svedra ne rabimo podatkov o teh organizacijskih enotah ampak
