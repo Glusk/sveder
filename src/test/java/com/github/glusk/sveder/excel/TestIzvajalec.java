@@ -1,5 +1,6 @@
 package com.github.glusk.sveder.excel;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.github.glusk.sveder.net.SpletnaStran;
@@ -21,6 +22,13 @@ public final class TestIzvajalec {
                     )
                 )
             ).zavodi().size()
+        );
+    }
+
+    @Test
+    public void vrneZavodeIzvajalcaZgrajenegaIzSifre() {
+        assertDoesNotThrow(() ->
+            new Izvajalec(7809).zavodi()
         );
     }
 }

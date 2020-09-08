@@ -30,8 +30,8 @@ public final class Izvajalec {
             new SpletnaStran(
                 new SvederUrl.UrlOvoj(
                     String.format(
-                        "http://www.zzzs.si/ZZZS/pao/izvajalci.nsf/WEBJavniZasebni?OpenView&RestrictToCategory=%d&OE=DI&tip=0&Count=700&n=1012",
-                        sifraIzvajalca
+                        "https://www.zzzs.si/ZZZS/pao/izvajalci.nsf/WEBJavniZasebni?OpenView&RestrictToCategory=%d&OE=DI&tip=0&Count=700&n=1012",
+                        sifraIzvajalca.intValue()
                     )
                 )
             )
