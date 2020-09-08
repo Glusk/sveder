@@ -1,14 +1,14 @@
 package com.github.glusk.sveder;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
 
 import com.github.glusk.sveder.excel.ExcelOrdinacije;
 import com.github.glusk.sveder.iskanje.OrdinacijeImeDejavnost;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public final class SvederIT {
     @Test
