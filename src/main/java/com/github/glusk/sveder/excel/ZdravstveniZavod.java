@@ -57,12 +57,12 @@ public final class ZdravstveniZavod {
                 new SpletnaStran(
                     new SvederUrl.UrlOvoj(
                         String.format(
-                            "http://www.zzzs.si/zzzs/pao/pogizv.nsf/PoZZZSst/%d",
+                            "https://www.zzzs.si/zzzs/pao/pogizv.nsf/PoZZZSst/%d",
                             zzzsSt
                         )
                     )
                 ),
-                "http://www.zzzs.si",
+                "https://www.zzzs.si",
                 "(?<=href=\").+(?=\" title)"
             )
         );

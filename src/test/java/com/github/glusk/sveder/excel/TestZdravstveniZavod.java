@@ -1,5 +1,6 @@
 package com.github.glusk.sveder.excel;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.IOException;
@@ -26,6 +27,12 @@ public final class TestZdravstveniZavod {
                 .getRow(1),
                 0
             ).intValue()
+        );
+    }
+    @Test
+    public void vrnePreglednicoZavodaZgrajenegaIzZzzsStevilke() {
+        assertDoesNotThrow(() ->
+            new ZdravstveniZavod(6189896).preglednica()
         );
     }
 }
