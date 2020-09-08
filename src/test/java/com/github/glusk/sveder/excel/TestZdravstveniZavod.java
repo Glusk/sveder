@@ -30,7 +30,7 @@ public final class TestZdravstveniZavod {
         );
     }
     @Test
-    public void vrnePreglednicoZavodaZgrajenegaIzZzzsStevilke(){
+    public void vrnePreglednicoZavodaZgrajenegaIzZzzsStevilke() {
         assertDoesNotThrow(() ->
             new ZdravstveniZavod(6189896).preglednica()
         );
