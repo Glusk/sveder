@@ -12,9 +12,16 @@ public interface Lokacija extends SvederTip {
      * @return 6-mestna šifra lokacije
      */
     Number sifra();
+    /**
+     * Vrne urnik zdravstvene ordinacije na tej lokaciji.
+     *
+     * @return nov objekt tipa Urnik
+     */
+    Urnik urnik();
     @Override
     default JSONObject json() throws IOException {
         return new JSONObject()
-            .put("id_lokacija", sifra().intValue());
+            .put("id_lokacija", sifra().intValue())
+            .put("urnik", urnik().json());
     }
 }
