@@ -3,6 +3,7 @@ package com.github.glusk.sveder;
 import java.io.IOException;
 import java.util.List;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 /** Zobozdravstvene ordinacije v sklopu javne mreže. */
@@ -17,10 +18,10 @@ public interface Ordinacije extends SvederTip {
 
     @Override
     default JSONObject json() throws IOException {
-        JSONObject rezultat = new JSONObject();
+        JSONArray ordinacije = new JSONArray();
         for (Ordinacija o : ordinacije()) {
-            rezultat.put("ordinacija", o.json());
+            ordinacije.put(o.json());
         }
-        return rezultat;
+        return new JSONObject().put("ordinacije", ordinacije);
     }
 }

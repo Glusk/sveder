@@ -10,7 +10,21 @@ import com.github.glusk.sveder.net.UrlNaStrani;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 
-/** Zdravstveni zavod zgrajen iz poti do preglendnice. */
+/**
+ * Zdravstveni zavod vpisan pri ZZZS-ju.
+ * <p>
+ * Mogoče <em>zdravstveni zavod</em> ni prava beseda; gre za neke vrste
+ * organizacijsko enoto, ki jo ZZZS beleži za izvajalce zdravstvenih storitev.
+ * <p>
+ * Vsaka taka enota ima lahko eno ali več podenot, ki jih ZZZS imenuje
+ * <em>izpostava</em> oziroma <em>območna enota</em>. Sveder ne dela razlik
+ * med <em>enoto</em> in <em>podenoto</em> - oboje smatra kot
+ * {@code ZdravstveniZavod}.
+ * <p>
+ * Za potrebe Svedra ne rabimo podatkov o teh organizacijskih enotah ampak
+ * Excelove preglednice, ki jih hranijo. V njih se namreč skrivajo podatki o
+ * urnikih, čakalnih dobah in lokacijah zobozdravstvenih ordinacij.
+ */
 public final class ZdravstveniZavod {
     /** URL naslov {@code <Ime_zavoda>UrnČD.xlsx} preglednice. */
     private final SvederUrl urlPreglednice;
@@ -30,7 +44,7 @@ public final class ZdravstveniZavod {
     /**
      * Zgradi nov zavod iz ZZZS številke.
      * <p>
-     * Na spletni strani zavoda:
+     * Na spletni strani:
      * http://www.zzzs.si/zzzs/pao/pogizv.nsf/PoZZZSst/<strong>{@code zzzsSt}</strong>
      * <br>
      * se nahaja link do {@code .xlsx} datoteke tega zavoda.
@@ -43,12 +57,12 @@ public final class ZdravstveniZavod {
                 new SpletnaStran(
                     new SvederUrl.UrlOvoj(
                         String.format(
-                            "http://www.zzzs.si/zzzs/pao/pogizv.nsf/PoZZZSst/%d",
+                            "https://www.zzzs.si/zzzs/pao/pogizv.nsf/PoZZZSst/%d",
                             zzzsSt
                         )
                     )
                 ),
-                "http://www.zzzs.si",
+                "https://www.zzzs.si",
                 "(?<=href=\").+(?=\" title)"
             )
         );
@@ -86,7 +100,7 @@ public final class ZdravstveniZavod {
     *                                        URL {@code .xlsx} preglednice ni
     *                                        veljaven
     */
-    public Workbook preglednicaZZZS() throws IOException {
+    public Workbook preglednica() throws IOException {
         try {
             return WorkbookFactory.create(urlPreglednice.url().openStream());
         } catch (FileNotFoundException e) {

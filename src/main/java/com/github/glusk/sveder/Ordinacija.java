@@ -1,5 +1,7 @@
 package com.github.glusk.sveder;
 
+import java.io.IOException;
+
 import org.json.JSONObject;
 
 /** Zobozdravstvena ordinacija v sklopu javne mreže. */
@@ -32,12 +34,22 @@ public interface Ordinacija extends SvederTip {
      */
     Number doseganjePovprecja();
 
+    /**
+     * Vrne vse {@link Lokacije} te ordinacije.
+     *
+     * @return vrne lokacije
+     */
+    Lokacije lokacije();
+
     @Override
-    default JSONObject json() {
-        return new JSONObject()
+    default JSONObject json() throws IOException {
+        return new JSONObject().put("ordinacija",
+            new JSONObject()
             .put("id_izvajalec", izvajalec().intValue())
             .put("zdravnik", zdravnik().json())
             .put("dejavnost", dejavnost().json())
-            .put("doseganje_povprecja", doseganjePovprecja().doubleValue());
+            .put("doseganje_povprecja", doseganjePovprecja().doubleValue())
+            .put("lokacije", lokacije().json())
+        );
     }
 }

@@ -11,8 +11,10 @@ import com.github.glusk.sveder.orodja.RegularniIzraz;
 /**
  * Izvajalec zdravstvenih storitev.
  * <p>
- * Vsak izvajalec, ki je del javnega zdravstva, ima pri ZZZS registriranega
- * enega ali več zavodov.
+ * Vsak izvajalec, ki je del javnega zdravstva, ima pri ZZZS-ju vpisanega
+ * enega ali več <em>zdravstvenih zavodov</em>.
+ *
+ * @see {@link ZdravstveniZavod}
  */
 public final class Izvajalec {
     /** Spletna stran izvajalca na ZZZS-ju. */
@@ -21,15 +23,15 @@ public final class Izvajalec {
     /**
      * Zgradi izvajalca iz šifre (register izvajalcev, baza NIJZ).
      *
-     * @param sifraIzvajalca celo število, omejeno na 6 mest.
+     * @param sifraIzvajalca celo število, omejeno na 5 mest.
      */
     public Izvajalec(final Number sifraIzvajalca) {
         this(
             new SpletnaStran(
                 new SvederUrl.UrlOvoj(
                     String.format(
-                        "http://www.zzzs.si/ZZZS/pao/izvajalci.nsf/WEBJavniZasebni?OpenView&RestrictToCategory=%d&OE=DI&tip=0&Count=700&n=1012",
-                        sifraIzvajalca
+                        "https://www.zzzs.si/ZZZS/pao/izvajalci.nsf/WEBJavniZasebni?OpenView&RestrictToCategory=%d&OE=DI&tip=0&Count=700&n=1012",
+                        sifraIzvajalca.intValue()
                     )
                 )
             )
@@ -37,9 +39,9 @@ public final class Izvajalec {
     }
 
     /**
-     * Zgradi izvajalca iz URL naslova.
+     * Zgradi izvajalca iz spletne strani izvajalca na ZZZS-ju.
      *
-     * @param stranIzvajalca Pot do spletne strani izvajalca na ZZZS-ju.
+     * @param stranIzvajalca spletna stran izvajalca na ZZZS-ju.
      */
     public Izvajalec(final SpletnaStran stranIzvajalca) {
         this.stranIzvajalca = stranIzvajalca;

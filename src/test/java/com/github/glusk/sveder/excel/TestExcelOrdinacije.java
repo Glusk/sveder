@@ -1,6 +1,6 @@
 package com.github.glusk.sveder.excel;
 
-import static org.junit.Assert.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -12,7 +12,7 @@ import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.Locale;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public final class TestExcelOrdinacije {
     @Test
@@ -55,7 +55,6 @@ public final class TestExcelOrdinacije {
             out.write(testFileLines.toString());
         }
         assertArrayEquals(
-            "Datoteki se ne ujemata!",
             Files.readAllBytes(tmp.toPath()),
             Files.readAllBytes(
                 Paths.get(
@@ -63,7 +62,8 @@ public final class TestExcelOrdinacije {
                         .getResource("seznamOrdinacij.txt")
                         .toURI()
                 )
-            )
+            ),
+            "Datoteki se ne ujemata!"
         );
     }
 }

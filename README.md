@@ -30,52 +30,62 @@ v naslednji obliki in obsegu:
       "naziv": "string"
     },
     "doseganje_povprecja": "number",
-    "lokacija": {
-      "id_lokacija": "number",
-      "naziv": "string",
-      "naslov": "string",
-      "telefon": "string",
-      "urnik": {
-        "pon": {
-          "od": "string",
-          "do": "string"
+    "lokacije": {
+      "lokacija": {
+        "id_lokacija": "number",
+        "naziv": "string",
+        "naslov": "string",
+        "telefon": "string",
+        "urnik": {
+          "razpored": [
+            {
+              "dan": "pon",
+              "od": "string",
+              "do": "string"
+            },
+            {
+              "dan": "tor",
+              "od": "string",
+              "do": "string"
+            },
+            {
+              "dan": "sre",
+              "od": "string",
+              "do": "string"
+            },
+            {
+              "dan": "cet",
+              "od": "string",
+              "do": "string"
+            },
+            {
+              "dan": "pet",
+              "od": "string",
+              "do": "string"
+            },
+            {
+              "dan": "sob",
+              "od": "string",
+              "do": "string"
+            },
+          ],
+          "opombe": "string"
         },
-        "tor": {
-          "od": "string",
-          "do": "string"
-        },
-        "sre": {
-          "od": "string",
-          "do": "string"
-        },
-        "cet": {
-          "od": "string",
-          "do": "string"
-        },
-        "pet": {
-          "od": "string",
-          "do": "string"
-        },
-        "sob": {
-          "od": "string",
-          "do": "string"
-        },
-        "opombe": "string"
-      },
-      "cakalne_dobe": {
-        "storitev": {
-          "id_storitve": "number",
-          "ime_storitve": "string",
-          "min_dni": "number",
-          "max_dni": "number"
-        },
-        "storitev": {
-          "id_storitve": "number",
-          "ime_storitve": "string",
-          "min_dni": "number",
-          "max_dni": "number"
-        },
-        "opombe": "string"
+        "cakalne_dobe": {
+          "storitev": {
+            "id_storitve": "number",
+            "ime_storitve": "string",
+            "min_dni": "number",
+            "max_dni": "number"
+          },
+          "storitev": {
+            "id_storitve": "number",
+            "ime_storitve": "string",
+            "min_dni": "number",
+            "max_dni": "number"
+          },
+          "opombe": "string"
+        }
       }
     }
   },
