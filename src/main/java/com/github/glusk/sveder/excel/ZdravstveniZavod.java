@@ -91,6 +91,8 @@ public final class ZdravstveniZavod {
     * <p>
     * Lahko se zgodi, da nek zavod ne objavi preglednice. V tem primeru metoda
     * vrne prazno preglednico z zgoraj naštetimi listi.
+    * <p>
+    * Preglednico je potrebno po uporabi tudi zapreti.
     *
     * @return {@code .xlsx} preglednico
     * @throws IOException če pride do napake pri branju preglednice

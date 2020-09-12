@@ -1,5 +1,7 @@
 package com.github.glusk.sveder;
 
+import java.io.IOException;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -11,7 +13,7 @@ import org.json.JSONObject;
  */
 public interface Urnik extends SvederTip {
     /**
-     * Tabela velikosti 6 z tromestnimi {@code String} konstantami delovnih dni
+     * Tabela velikosti 6 s tromestnimi {@code String} konstantami delovnih dni
      * ("pon", "tor", "sre", "cet", "pet", "sob").
      */
     String[] DELOVNI_DNEVI = {
@@ -25,19 +27,21 @@ public interface Urnik extends SvederTip {
      * dan, drugi pa čas konca.
      *
      * @return 2-D tabela urnika
+     * @throws IOException če pride do napake pri branju podatkov
      */
-    String[][] urnik();
+    String[][] urnik() throws IOException;
     /**
      * Opombe urnika.
      * <p>
      * Opombe vsebujejo dodatne podatke o urniku, npr. odmor za malico.
      *
-     * @return niz z opombami.
+     * @return niz z opombami
+     * @throws IOException če pride do napake pri branju podatkov
      */
-    String opombe();
+    String opombe() throws IOException;
 
     @Override
-    default JSONObject json() {
+    default JSONObject json() throws IOException {
         JSONArray tabela = new JSONArray();
         String[][] urnik = urnik();
         for (int i = 0; i < DELOVNI_DNEVI.length; i++) {

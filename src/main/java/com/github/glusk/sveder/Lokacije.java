@@ -19,9 +19,13 @@ public interface Lokacije extends SvederTip {
      * @throws IOException če pride do napake pri branju podatkov
      */
     List<Lokacija> lokacije() throws IOException;
+
     @Override
     default JSONObject json() throws IOException {
-        // TODO Auto-generated method stub
-        return null;
+        JSONObject lokacije = new JSONObject();
+        for (Lokacija l : lokacije()) {
+            lokacije.put("lokacija", l.json());
+        }
+        return lokacije;
     }
 }

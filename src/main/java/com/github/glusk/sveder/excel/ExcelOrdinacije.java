@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 import com.github.glusk.sveder.Dejavnost;
+import com.github.glusk.sveder.Lokacije;
 import com.github.glusk.sveder.Ordinacija;
 import com.github.glusk.sveder.Ordinacije;
 import com.github.glusk.sveder.Zdravnik;
@@ -206,6 +207,16 @@ public final class ExcelOrdinacije implements Ordinacije {
                                 new NumericnaCelica(
                                     vrstica,
                                     STOLPEC_DOSEGANJE_POVP
+                                );
+                        }
+                        @Override
+                        public Lokacije lokacije() {
+                            return
+                                new LokacijeZdravstvenihZavodov(
+                                    new Izvajalec(izvajalec()),
+                                    izvajalec(),
+                                    Integer.parseInt(dejavnost().sifra()),
+                                    zdravnik().sifra()
                                 );
                         }
                     }

@@ -16,8 +16,9 @@ public interface Lokacija extends SvederTip {
      * Vrne urnik zdravstvene ordinacije na tej lokaciji.
      *
      * @return nov objekt tipa Urnik
+     * @throws IOException ce pride do napake pri branju podatkov urnika
      */
-    Urnik urnik();
+    Urnik urnik() throws IOException;
     @Override
     default JSONObject json() throws IOException {
         return new JSONObject()
