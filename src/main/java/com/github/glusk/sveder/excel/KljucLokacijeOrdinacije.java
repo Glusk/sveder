@@ -12,9 +12,11 @@ import org.apache.poi.ss.usermodel.Row;
  * <em>Lokacija</em> in <em>Nosilec</em>) v vrstici enolično določajo
  * vrstico in ta razred vzame ravno te stolpce za ključ.
  * <p>
- * V Svedru je {@link Ordinacija} enolično določena z zdravnikom, izvajalcem in
+ * V Svedru je ordinacija enolično določena z zdravnikom, izvajalcem in
  * vrsto dejavnosti, zato lahko rečemo da je ta razred ključ lokacije neke
  * ordinacije.
+ *
+ * @see com.github.glusk.sveder.Ordinacija
  */
 public final class KljucLokacijeOrdinacije implements Predicate<Row> {
     /** Indeks stolpca "Izvajalec" v vrsticah preglednice. */

@@ -51,7 +51,7 @@ public final class ExcelUrnik implements Urnik {
      * @param sifraDejavnosti stolpec "Dejavnost" ključa
      * @param sifraZdravnika stolpec "Nosilec" ključa
      * @param sifraLokacije stolpec "Lokacija" ključa
-     * @see {@link VrsticaUrnika}
+     * @see VrsticaUrnika
      */
     public ExcelUrnik(
         final ZdravstveniZavod zavod,

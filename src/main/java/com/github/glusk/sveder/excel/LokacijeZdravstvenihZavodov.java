@@ -15,8 +15,8 @@ import com.github.glusk.sveder.Lokacije;
  * ({@link ZdravstveniZavod#preglednica()}). Vnaprej ne vemo v kateri,
  * zato ta razred pregleda vse.
  *
- * @see {@link ZdravstveniZavod}
- * @see {@link Izvajalec}
+ * @see ZdravstveniZavod
+ * @see Izvajalec
  */
 public final class LokacijeZdravstvenihZavodov implements Lokacije {
     /** Izvajalec s seznamom zavodov. */

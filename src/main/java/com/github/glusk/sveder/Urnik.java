@@ -8,8 +8,8 @@ import org.json.JSONObject;
 /**
  * Urnik ordinacije na lokaciji.
  *
- * @see {@link Lokacija}
- * @see {@link Ordinacija}
+ * @see Lokacija
+ * @see Ordinacija
  */
 public interface Urnik extends SvederTip {
     /**
