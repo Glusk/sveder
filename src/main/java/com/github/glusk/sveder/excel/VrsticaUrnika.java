@@ -11,7 +11,7 @@ import org.apache.poi.ss.usermodel.Workbook;
  * Prva veljavna vrstica urnika v listu {@code UrnikiIZV} preglednice
  * zdravstvenega zavoda, ki ustreza ključu.
  *
- * @see {@link JeVrsticaVeljavna}
+ * @see JeVrsticaVeljavna
  */
 public final class VrsticaUrnika implements ExcelVrstica {
     /** Indeks stolpca "Datum začetka veljavnosti" v listu "UrnikiIZV". */
@@ -56,7 +56,7 @@ public final class VrsticaUrnika implements ExcelVrstica {
      *                       enako tej vrednosti
      * @param sifraLokacije ta vrstica naj ima vrednost stolpca "Lokacija"
      *                      enako tej vrednosti
-     * @see {@link KljucLokacijeOrdinacije}
+     * @see KljucLokacijeOrdinacije
      */
     public VrsticaUrnika(
         final ZdravstveniZavod zavod,
@@ -98,7 +98,7 @@ public final class VrsticaUrnika implements ExcelVrstica {
      * V kolikor ima urnik več veljavnih vrstic (kar se lahko zgodi v primeru
      * nepazljivega vnosa s strani izvajalca), vzamemo prvo veljavno vrstico.
      *
-     * @see {@link JeVrsticaVeljavna}
+     * @see JeVrsticaVeljavna
      */
     @Override
     public Row vrstica() throws IOException {

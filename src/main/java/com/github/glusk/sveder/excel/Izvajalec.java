@@ -14,7 +14,7 @@ import com.github.glusk.sveder.orodja.RegularniIzraz;
  * Vsak izvajalec, ki je del javnega zdravstva, ima pri ZZZS-ju vpisanega
  * enega ali več <em>zdravstvenih zavodov</em>.
  *
- * @see {@link ZdravstveniZavod}
+ * @see ZdravstveniZavod
  */
 public final class Izvajalec {
     /** Spletna stran izvajalca na ZZZS-ju. */

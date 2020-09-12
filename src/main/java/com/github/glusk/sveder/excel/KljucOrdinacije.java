@@ -13,8 +13,10 @@ import org.apache.poi.ss.usermodel.Row;
  * vrstico. Ta razred vzame za ključ samo stolpce: <em>Izvajalec</em>,
  * <em>Dejavnost</em> in <em>Nosilec</em>.
  * <p>
- * V Svedru je {@link Ordinacija} enolično določena z zdravnikom, izvajalcem in
+ * V Svedru je ordinacija enolično določena z zdravnikom, izvajalcem in
  * vrsto dejavnosti, zato lahko rečemo da je ta razred ključ ordinacije.
+ *
+ * @see com.github.glusk.sveder.Ordinacija
  */
 public final class KljucOrdinacije implements Predicate<Row> {
     /** Indeks stolpca "Izvajalec" v vrsticah preglednice. */
