@@ -1,11 +1,9 @@
 package com.github.glusk.sveder.excel;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.time.Instant;
-import java.time.format.DateTimeParseException;
 import java.time.temporal.ChronoUnit;
 import java.util.Date;
 
@@ -62,15 +60,13 @@ public final class TestJeVrsticaVeljavna {
         assertTrue(new JeVrsticaVeljavna(vrstica, 0, 1).test());
     }
     @Test
-    public void vrzeIzjemoCeJeNizJeNeveljavenDatum() {
+    public void slabFormatNizaDatumaJeNeveljavenDatum() {
         Row vrstica = new HSSFWorkbook()
             .createSheet()
             .createRow(0);
         vrstica.createCell(0, CellType.STRING)
                .setCellValue("01012019");
         vrstica.createCell(1, CellType.BLANK);
-        assertThrows(DateTimeParseException.class, () ->
-            new JeVrsticaVeljavna(vrstica, 0, 1).test()
-        );
+        assertFalse(new JeVrsticaVeljavna(vrstica, 0, 1).test());
     }
 }

@@ -4,6 +4,7 @@ import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.Locale;
 
 import org.apache.poi.ss.usermodel.Cell;
@@ -93,17 +94,21 @@ public final class JeVrsticaVeljavna {
      * @return {@code true}, če je vrstica veljavna
      */
     public boolean test() {
-        if (!new JeNepraznaCelica(vrstica, stolpecZacetek).test()) {
+        try {
+            if (!new JeNepraznaCelica(vrstica, stolpecZacetek).test()) {
+                return false;
+            }
+            Instant zacetek = vrniDatum(vrstica.getCell(stolpecZacetek));
+            if (!new JeNepraznaCelica(vrstica, stolpecKonec).test()) {
+                return zacetek.isBefore(Instant.now());
+            }
+            Instant konec = vrniDatum(vrstica.getCell(stolpecKonec));
+            return
+                zacetek.isBefore(Instant.now())
+                &&
+                konec.isAfter(Instant.now());
+        } catch (DateTimeParseException e) {
             return false;
         }
-        Instant zacetek = vrniDatum(vrstica.getCell(stolpecZacetek));
-        if (!new JeNepraznaCelica(vrstica, stolpecKonec).test()) {
-            return zacetek.isBefore(Instant.now());
-        }
-        Instant konec = vrniDatum(vrstica.getCell(stolpecKonec));
-        return
-            zacetek.isBefore(Instant.now())
-            &&
-            konec.isAfter(Instant.now());
     }
 }
