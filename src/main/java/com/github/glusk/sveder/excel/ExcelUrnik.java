@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 
+import com.github.glusk.sveder.Sifra;
 import com.github.glusk.sveder.Urnik;
 
 import org.apache.poi.ss.usermodel.Row;
@@ -55,10 +56,10 @@ public final class ExcelUrnik implements Urnik {
      */
     public ExcelUrnik(
         final ZdravstveniZavod zavod,
-        final Number sifraIzvajalca,
-        final Number sifraDejavnosti,
-        final Number sifraZdravnika,
-        final Number sifraLokacije
+        final Sifra sifraIzvajalca,
+        final Sifra sifraDejavnosti,
+        final Sifra sifraZdravnika,
+        final Sifra sifraLokacije
     ) {
         this(
             new VrsticaUrnika(

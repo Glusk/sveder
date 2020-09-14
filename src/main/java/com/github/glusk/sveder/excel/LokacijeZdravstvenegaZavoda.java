@@ -7,6 +7,7 @@ import java.util.stream.StreamSupport;
 
 import com.github.glusk.sveder.Lokacija;
 import com.github.glusk.sveder.Lokacije;
+import com.github.glusk.sveder.Sifra;
 import com.github.glusk.sveder.Urnik;
 
 import org.apache.poi.ss.usermodel.Workbook;
@@ -25,11 +26,11 @@ public final class LokacijeZdravstvenegaZavoda implements Lokacije {
     /** Zavod s preglednico. */
     private final ZdravstveniZavod zavod;
     /** Šifra izvajalca ordinacije, katere lokacije iščemo. */
-    private final Number sifraIzvajalca;
+    private final Sifra sifraIzvajalca;
     /** Šifra dejavnosti ordinacije, katere lokacije iščemo. */
-    private final Number sifraDejavnosti;
+    private final Sifra sifraDejavnosti;
     /** Šifra zdravnika (nosilca) ordinacije, katere lokacije iščemo. */
-    private final Number sifraZdravnika;
+    private final Sifra sifraZdravnika;
 
     /**
      * Zgradi lokacije zavoda iz zavoda in ključa ordinacije:
@@ -45,9 +46,9 @@ public final class LokacijeZdravstvenegaZavoda implements Lokacije {
      */
     public LokacijeZdravstvenegaZavoda(
         final ZdravstveniZavod zavod,
-        final Number sifraIzvajalca,
-        final Number sifraDejavnosti,
-        final Number sifraZdravnika
+        final Sifra sifraIzvajalca,
+        final Sifra sifraDejavnosti,
+        final Sifra sifraZdravnika
     ) {
         this.zavod = zavod;
         this.sifraIzvajalca = sifraIzvajalca;
@@ -72,7 +73,6 @@ public final class LokacijeZdravstvenegaZavoda implements Lokacije {
                                .spliterator(),
                     false
                 )
-                .skip(1)
                 .filter(vrstica ->
                     new JeVrsticaVeljavna(
                         vrstica,
@@ -87,7 +87,7 @@ public final class LokacijeZdravstvenegaZavoda implements Lokacije {
                     ).test(vrstica)
                 )
                 .map(vrstica ->
-                    new NumericnaCelica(
+                    new ExcelSifra(
                         vrstica,
                         STOLPEC_LOKACIJA
                     )
@@ -96,7 +96,7 @@ public final class LokacijeZdravstvenegaZavoda implements Lokacije {
                 .map(sifraLokacije ->
                     new Lokacija() {
                         @Override
-                        public Number sifra() {
+                        public Sifra sifra() {
                             return sifraLokacije;
                         }
                         @Override

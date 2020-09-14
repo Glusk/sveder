@@ -11,7 +11,7 @@ public interface Lokacija extends SvederTip {
      *
      * @return 6-mestna šifra lokacije
      */
-    Number sifra();
+    Sifra sifra();
     /**
      * Vrne urnik zdravstvene ordinacije na tej lokaciji.
      *
@@ -22,7 +22,7 @@ public interface Lokacija extends SvederTip {
     @Override
     default JSONObject json() throws IOException {
         return new JSONObject()
-            .put("id_lokacija", sifra().intValue())
+            .put("sifra", sifra().vrednost())
             .put("urnik", urnik().json());
     }
 }

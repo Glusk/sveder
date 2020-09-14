@@ -2,6 +2,8 @@ package com.github.glusk.sveder.excel;
 
 import java.util.function.Predicate;
 
+import com.github.glusk.sveder.Sifra;
+
 import org.apache.poi.ss.usermodel.Row;
 
 /**
@@ -29,13 +31,13 @@ public final class KljucLokacijeOrdinacije implements Predicate<Row> {
     private static final int STOLPEC_NOSILEC = 3;
 
     /** Vrednost stolpca "Izvajalec" tega ključa. */
-    private final Number sifraIzvajalca;
+    private final Sifra sifraIzvajalca;
     /** Vrednost stolpca "Dejavnost" tega ključa. */
-    private final Number sifraDejavnosti;
+    private final Sifra sifraDejavnosti;
     /** Vrednost stolpca "Nosilec" tega ključa. */
-    private final Number sifraZdravnika;
+    private final Sifra sifraZdravnika;
     /** Vrednost stolpca "Lokacija" tega ključa. */
-    private final Number sifraLokacije;
+    private final Sifra sifraLokacije;
 
     /**
      * Sestavi nov ključ lokacije ordinacije s podanimi vrednostmi
@@ -47,10 +49,10 @@ public final class KljucLokacijeOrdinacije implements Predicate<Row> {
      * @param sifraLokacije vrednost stolpca "Lokacija" tega ključa
      */
     public KljucLokacijeOrdinacije(
-        final Number sifraIzvajalca,
-        final Number sifraDejavnosti,
-        final Number sifraZdravnika,
-        final Number sifraLokacije
+        final Sifra sifraIzvajalca,
+        final Sifra sifraDejavnosti,
+        final Sifra sifraZdravnika,
+        final Sifra sifraLokacije
     ) {
         this.sifraIzvajalca = sifraIzvajalca;
         this.sifraDejavnosti = sifraDejavnosti;
@@ -73,24 +75,24 @@ public final class KljucLokacijeOrdinacije implements Predicate<Row> {
     @Override
     public boolean test(final Row vrstica) {
         return
-            new NumericnaCelica(
+            new ExcelSifra(
                 vrstica,
                 STOLPEC_IZVAJALEC
-            ).intValue() == sifraIzvajalca.intValue()
+            ).vrednost().equals(sifraIzvajalca.vrednost())
             &&
-            new NumericnaCelica(
+            new ExcelSifra(
                 vrstica,
                 STOLPEC_DEJAVNOST
-            ).intValue() == sifraDejavnosti.intValue()
+            ).vrednost().equals(sifraDejavnosti.vrednost())
             &&
-            new NumericnaCelica(
+            new ExcelSifra(
                 vrstica,
                 STOLPEC_NOSILEC
-            ).intValue() == sifraZdravnika.intValue()
+            ).vrednost().equals(sifraZdravnika.vrednost())
             &&
-            new NumericnaCelica(
+            new ExcelSifra(
                 vrstica,
                 STOLPEC_LOKACIJA
-            ).intValue() == sifraLokacije.intValue();
+            ).vrednost().equals(sifraLokacije.vrednost());
     }
 }

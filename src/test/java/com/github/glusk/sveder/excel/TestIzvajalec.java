@@ -28,7 +28,7 @@ public final class TestIzvajalec {
     @Test
     public void vrneZavodeIzvajalcaZgrajenegaIzSifre() {
         assertDoesNotThrow(() ->
-            new Izvajalec(7809).zavodi()
+            new Izvajalec(() -> "7809").zavodi()
         );
     }
 }

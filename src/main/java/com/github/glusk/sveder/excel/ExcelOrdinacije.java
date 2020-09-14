@@ -10,6 +10,7 @@ import com.github.glusk.sveder.Dejavnost;
 import com.github.glusk.sveder.Lokacije;
 import com.github.glusk.sveder.Ordinacija;
 import com.github.glusk.sveder.Ordinacije;
+import com.github.glusk.sveder.Sifra;
 import com.github.glusk.sveder.Zdravnik;
 import com.github.glusk.sveder.net.SpletnaStran;
 import com.github.glusk.sveder.net.SvederUrl;
@@ -155,20 +156,18 @@ public final class ExcelOrdinacije implements Ordinacije {
                 .map(
                     (vrstica) -> new Ordinacija() {
                         @Override
-                        public Number izvajalec() {
+                        public Sifra izvajalec() {
                             return
-                                new NumericnaCelica(
+                                new ExcelSifra(
                                     vrstica,
                                     STOLPEC_IZVAJALEC
                                 );
                         }
                         @Override
                         public Dejavnost dejavnost() {
-                            String sifra = vrstica.getCell(STOLPEC_DEJAVNOST)
-                                                  .getStringCellValue()
-                                                  .strip();
+                            Sifra sifra = new ExcelSifra(vrstica, STOLPEC_DEJAVNOST);
                             for (Dejavnost dejavnost : Dejavnost.values()) {
-                                if (dejavnost.sifra().equals(sifra)) {
+                                if (dejavnost.sifra().vrednost().equals(sifra.vrednost())) {
                                     return dejavnost;
                                 }
                             }
@@ -184,9 +183,9 @@ public final class ExcelOrdinacije implements Ordinacije {
                             return
                                 new Zdravnik() {
                                     @Override
-                                    public Number sifra() {
+                                    public Sifra sifra() {
                                         return
-                                            new NumericnaCelica(
+                                            new ExcelSifra(
                                                 vrstica,
                                                 STOLPEC_ZDRAVNIK_SIFRA
                                             );
@@ -215,7 +214,7 @@ public final class ExcelOrdinacije implements Ordinacije {
                                 new LokacijeZdravstvenihZavodov(
                                     new Izvajalec(izvajalec()),
                                     izvajalec(),
-                                    Integer.parseInt(dejavnost().sifra()),
+                                    dejavnost().sifra(),
                                     zdravnik().sifra()
                                 );
                         }

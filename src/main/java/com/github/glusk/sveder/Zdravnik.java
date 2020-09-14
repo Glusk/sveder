@@ -7,9 +7,9 @@ public interface Zdravnik extends SvederTip {
     /**
      * Šifra zobozdravnika.
      *
-     * @return pozitivno celo število, omejeno na 5 mest
+     * @return pozitivno celo število, omejeno na največ 5 mest
      */
-    Number sifra();
+    Sifra sifra();
     /**
      * Ime in priimek zobozdravnika.
      *
@@ -20,7 +20,7 @@ public interface Zdravnik extends SvederTip {
     @Override
     default JSONObject json() {
         return new JSONObject()
-            .put("id_zdravnik", sifra().intValue())
+            .put("sifra", sifra().vrednost())
             .put("ime_priimek", imeInPriimek());
     }
 }

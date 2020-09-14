@@ -20,19 +20,19 @@ v naslednji obliki in obsegu:
 ``` json
 {
   "ordinacija": {
-    "id_izvajalec": "number",
+    "sifra_izvajalca": "string",
     "zdravnik": {
-      "id_zdravnik": "number",
+      "sifra": "string",
       "ime_priimek": "string"
     },
     "dejavnost": {
-      "id_dejavnost": "string",
+      "sifra": "string",
       "naziv": "string"
     },
     "doseganje_povprecja": "number",
     "lokacije": {
       "lokacija": {
-        "id_lokacija": "number",
+        "sifra": "string",
         "naziv": "string",
         "naslov": "string",
         "telefon": "string",

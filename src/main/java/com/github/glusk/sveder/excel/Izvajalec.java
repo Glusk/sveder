@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.github.glusk.sveder.Sifra;
 import com.github.glusk.sveder.net.SpletnaStran;
 import com.github.glusk.sveder.net.SvederUrl;
 import com.github.glusk.sveder.orodja.RegularniIzraz;
@@ -25,13 +26,13 @@ public final class Izvajalec {
      *
      * @param sifraIzvajalca celo število, omejeno na 5 mest.
      */
-    public Izvajalec(final Number sifraIzvajalca) {
+    public Izvajalec(final Sifra sifraIzvajalca) {
         this(
             new SpletnaStran(
                 new SvederUrl.UrlOvoj(
                     String.format(
-                        "https://www.zzzs.si/ZZZS/pao/izvajalci.nsf/WEBJavniZasebni?OpenView&RestrictToCategory=%d&OE=DI&tip=0&Count=700&n=1012",
-                        sifraIzvajalca.intValue()
+                        "https://www.zzzs.si/ZZZS/pao/izvajalci.nsf/WEBJavniZasebni?OpenView&RestrictToCategory=%s&OE=DI&tip=0&Count=700&n=1012",
+                        sifraIzvajalca.vrednost()
                     )
                 )
             )
