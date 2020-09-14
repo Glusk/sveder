@@ -40,6 +40,17 @@ public final class SpletnaStran {
     }
 
     /**
+     * Vrne url te spletne strani kot niz.
+     *
+     * @return niz z URL-jem te strani
+     * @throws IOException če pride do napake pri branju URL-ja
+     * @throws java.net.MalformedURLException če url ni veljaven
+     */
+    public String urlNaslov() throws IOException {
+        return url.url().toString();
+    }
+
+    /**
      * Vrne vsebino te spletne strani.
      *
      * @return vsebina kot niz
