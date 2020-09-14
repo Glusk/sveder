@@ -14,21 +14,21 @@ import org.json.JSONObject;
  */
 public enum Dejavnost implements SvederTip {
     /** ZOBOZDR. DEJAVNOST-ZDRAVLJENJE ODRASLIH */
-    ZDRAVLJENJE_ODRASLI("404101"),
+    ZDRAVLJENJE_ODRASLI(() -> "404101"),
     /** ZOBOZDR. DEJAVNOST-ZDRAVLJENJE MLADINE */
-    ZDRAVLJENJE_MLADINA("404103"),
+    ZDRAVLJENJE_MLADINA(() -> "404103"),
     /** ZOBOZDR. DEJAVNOST-ZDRAVLJENJE ŠTUDENTOV */
-    ZDRAVLJENJE_STUDENTI("404105");
+    ZDRAVLJENJE_STUDENTI(() -> "404105");
 
     /** 6-mesten niz - sifra dejavnosti. */
-    private final String sifra;
+    private final Sifra sifra;
 
     /**
      * Zgradi novo Dejavnost iz sifre.
      *
      * @param sifra 6-mesten niz - sifra dejavnosti
      */
-    Dejavnost(final String sifra) {
+    Dejavnost(final Sifra sifra) {
         this.sifra = sifra;
     }
 
@@ -37,13 +37,13 @@ public enum Dejavnost implements SvederTip {
      *
      * @return 6-mesten niz - sifra dejavnosti
      */
-    public String sifra() {
+    public Sifra sifra() {
         return sifra;
     }
 
     @Override
     public JSONObject json() {
-        return new JSONObject().put("id_dejavnost", sifra)
+        return new JSONObject().put("sifra", sifra.vrednost())
                                .put("naziv", this);
     }
 }

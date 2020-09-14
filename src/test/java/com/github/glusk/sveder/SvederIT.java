@@ -27,8 +27,8 @@ public final class SvederIT {
 
         assertTrue(rezultat.size() == 1);
         Ordinacija o = rezultat.get(0);
-        assertEquals(25333, o.izvajalec().intValue());
-        assertEquals(7809, o.zdravnik().sifra().intValue());
+        assertEquals("25333", o.izvajalec().vrednost());
+        assertEquals("7809", o.zdravnik().sifra().vrednost());
         assertEquals("GAJIĆ ŽELJKO", o.zdravnik().imeInPriimek());
         assertEquals(Dejavnost.ZDRAVLJENJE_ODRASLI, o.dejavnost());
         assertEquals(119.13, o.doseganjePovprecja().doubleValue(), .001f);

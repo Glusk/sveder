@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 
 import com.github.glusk.sveder.Lokacija;
 import com.github.glusk.sveder.Lokacije;
+import com.github.glusk.sveder.Sifra;
 
 /**
  * Lokacije ordinacije, izluščene iz vseh zavodov izvajalca.
@@ -22,11 +23,11 @@ public final class LokacijeZdravstvenihZavodov implements Lokacije {
     /** Izvajalec s seznamom zavodov. */
     private final Izvajalec izvajalec;
     /** Šifra izvajalca ordinacije, katere lokacije iščemo. */
-    private final Number sifraIzvajalca;
+    private final Sifra sifraIzvajalca;
     /** Šifra dejavnosti ordinacije, katere lokacije iščemo. */
-    private final Number sifraDejavnosti;
+    private final Sifra sifraDejavnosti;
     /** Šifra zdravnika (nosilca) ordinacije, katere lokacije iščemo. */
-    private final Number sifraZdravnika;
+    private final Sifra sifraZdravnika;
 
     /**
      * Zgradi nove Lokacije iz izvajalca in ključa ordinacije:
@@ -42,9 +43,9 @@ public final class LokacijeZdravstvenihZavodov implements Lokacije {
      */
     public LokacijeZdravstvenihZavodov(
         final Izvajalec izvajalec,
-        final Number sifraIzvajalca,
-        final Number sifraDejavnosti,
-        final Number sifraZdravnika
+        final Sifra sifraIzvajalca,
+        final Sifra sifraDejavnosti,
+        final Sifra sifraZdravnika
     ) {
         this.izvajalec = izvajalec;
         this.sifraIzvajalca = sifraIzvajalca;

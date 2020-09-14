@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.util.function.Predicate;
 import java.util.stream.StreamSupport;
 
+import com.github.glusk.sveder.Sifra;
+
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Workbook;
 
@@ -60,10 +62,10 @@ public final class VrsticaUrnika implements ExcelVrstica {
      */
     public VrsticaUrnika(
         final ZdravstveniZavod zavod,
-        final Number sifraIzvajalca,
-        final Number sifraDejavnosti,
-        final Number sifraZdravnika,
-        final Number sifraLokacije
+        final Sifra sifraIzvajalca,
+        final Sifra sifraDejavnosti,
+        final Sifra sifraZdravnika,
+        final Sifra sifraLokacije
     ) {
         this(
             zavod,
@@ -108,7 +110,6 @@ public final class VrsticaUrnika implements ExcelVrstica {
                     preglednica.getSheet("UrnikiIZV").spliterator(),
                     false
                 )
-                .skip(1)
                 .filter(vrstica ->
                     // Glej samo urnike ki so veljavni:
                     new JeVrsticaVeljavna(

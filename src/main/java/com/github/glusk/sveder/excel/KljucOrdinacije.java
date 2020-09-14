@@ -2,6 +2,8 @@ package com.github.glusk.sveder.excel;
 
 import java.util.function.Predicate;
 
+import com.github.glusk.sveder.Sifra;
+
 import org.apache.poi.ss.usermodel.Row;
 
 /**
@@ -27,11 +29,11 @@ public final class KljucOrdinacije implements Predicate<Row> {
     private static final int STOLPEC_NOSILEC = 3;
 
     /** Vrednost stolpca "Izvajalec" tega ključa. */
-    private final Number sifraIzvajalca;
+    private final Sifra sifraIzvajalca;
     /** Vrednost stolpca "Dejavnost" tega ključa. */
-    private final Number sifraDejavnosti;
+    private final Sifra sifraDejavnosti;
     /** Vrednost stolpca "Nosilec" tega ključa. */
-    private final Number sifraZdravnika;
+    private final Sifra sifraZdravnika;
 
      /**
      * Sestavi nov ključ ordinacije s podanimi vrednostmi
@@ -42,9 +44,9 @@ public final class KljucOrdinacije implements Predicate<Row> {
      * @param sifraZdravnika vrednost stolpca "Nosilec" tega ključa
      */
     public KljucOrdinacije(
-        final Number sifraIzvajalca,
-        final Number sifraDejavnosti,
-        final Number sifraZdravnika
+        final Sifra sifraIzvajalca,
+        final Sifra sifraDejavnosti,
+        final Sifra sifraZdravnika
     ) {
         this.sifraIzvajalca = sifraIzvajalca;
         this.sifraDejavnosti = sifraDejavnosti;
@@ -66,19 +68,19 @@ public final class KljucOrdinacije implements Predicate<Row> {
     @Override
     public boolean test(final Row vrstica) {
         return
-            new NumericnaCelica(
+            new ExcelSifra(
                 vrstica,
                 STOLPEC_IZVAJALEC
-            ).intValue() == sifraIzvajalca.intValue()
+            ).vrednost().equals(sifraIzvajalca.vrednost())
             &&
-            new NumericnaCelica(
+            new ExcelSifra(
                 vrstica,
                 STOLPEC_DEJAVNOST
-            ).intValue() == sifraDejavnosti.intValue()
+            ).vrednost().equals(sifraDejavnosti.vrednost())
             &&
-            new NumericnaCelica(
+            new ExcelSifra(
                 vrstica,
                 STOLPEC_NOSILEC
-            ).intValue() == sifraZdravnika.intValue();
+            ).vrednost().equals(sifraZdravnika.vrednost());
     }
 }

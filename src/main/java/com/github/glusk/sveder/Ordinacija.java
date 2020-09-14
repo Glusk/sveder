@@ -10,9 +10,9 @@ public interface Ordinacija extends SvederTip {
      * Šifra izvajalca zdravstvenih storitev pri katerem je ordinacija
      * registrirana.
      *
-     * @return Pozitivno celo število, omejeno na 5 mest.
+     * @return Pozitivno celo število, omejeno na največ 5 mest.
      */
-    Number izvajalec();
+    Sifra izvajalec();
     /**
      * Vrne dejavnost, ki se izvaja v tej ordinaciji.
      *
@@ -45,7 +45,7 @@ public interface Ordinacija extends SvederTip {
     default JSONObject json() throws IOException {
         return new JSONObject().put("ordinacija",
             new JSONObject()
-            .put("id_izvajalec", izvajalec().intValue())
+            .put("sifra_izvajalca", izvajalec().vrednost())
             .put("zdravnik", zdravnik().json())
             .put("dejavnost", dejavnost().json())
             .put("doseganje_povprecja", doseganjePovprecja().doubleValue())
