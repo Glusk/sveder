@@ -1,5 +1,7 @@
 package com.github.glusk.sveder.net;
 
+import java.util.List;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 
@@ -80,18 +82,34 @@ public final class UrlNaStrani implements SvederUrl {
      * rezultat kot nov URL.
      *
      * @return novo instanco iskanega URL-ja na strani
-     * @throws IOException če pride do napak pri branju strani
+     * @throws IOException če pride do napak pri branju strani če na strani
+     * @throws FileNotFoundException če na strani ni URL naslova, ki se ujema z
+     *                               {@code regexUrl}, podanim prek
+     *                               konstruktorja
      * @throws java.net.MalformedURLException če URL ni veljaven
      */
     @Override
     public URL url() throws IOException {
+        List<String> ujemanja =
+            new RegularniIzraz(
+                stran.vsebina(),
+                regexUrl
+            ).ujemanja();
+        if (ujemanja.isEmpty()) {
+            throw
+                new FileNotFoundException(
+                    String.format(
+                        "Na spletni strani \"%s\" ni URL-ja,"
+                      + "ki bi ustrezal vzorcu: %s",
+                        stran.urlNaslov(),
+                        regexUrl
+                    )
+                );
+        }
         return
             new URL(
                 predpona
-              + new RegularniIzraz(
-                    stran.vsebina(),
-                    regexUrl
-                ).ujemanja().get(0)
+              + ujemanja.get(0)
               + pripona
             );
     }

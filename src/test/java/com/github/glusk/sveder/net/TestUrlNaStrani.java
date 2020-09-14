@@ -1,7 +1,9 @@
 package com.github.glusk.sveder.net;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import org.junit.jupiter.api.Test;
@@ -21,6 +23,22 @@ public final class TestUrlNaStrani {
                 ),
                 "(?<=href=\").+(?=\">)"
             ).url().toString()
+        );
+    }
+
+    @Test
+    public void vrzeIzjemoCeNiUjemanj() throws IOException {
+        assertThrows(FileNotFoundException.class, () ->
+            new UrlNaStrani(
+                new SpletnaStran(
+                    new SvederUrl.UrlOvoj(
+                        this.getClass()
+                            .getResource("stranZLinkom.txt")
+                            .toString()
+                    )
+                ),
+                "a hrif="
+            ).url()
         );
     }
 
