@@ -37,7 +37,7 @@ public final class TestUrlNaStrani {
                             .toString()
                     )
                 ),
-                "a hrif="
+                "http://foo.bar"
             ).url()
         );
     }
