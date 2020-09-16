@@ -2,6 +2,7 @@ package com.github.glusk.sveder.excel;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.io.IOException;
 
@@ -33,6 +34,19 @@ public final class TestZdravstveniZavod {
     public void vrnePreglednicoZavodaZgrajenegaIzZzzsStevilke() {
         assertDoesNotThrow(() ->
             new ZdravstveniZavod(6189896).preglednica()
+        );
+    }
+    @Test
+    public void vrzeIzjemoCeJeNaURLjuPregledniceWordovDokument() {
+        assertThrows(IOException.class, () ->
+            new ZdravstveniZavod(
+                new SvederUrl.UrlOvoj(
+                    this.getClass()
+                        .getResource("PrazenWordovDokument.docx")
+                        .toString()
+                )
+            )
+            .preglednica()
         );
     }
 }
