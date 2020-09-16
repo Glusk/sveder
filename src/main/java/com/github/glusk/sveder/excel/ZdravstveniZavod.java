@@ -7,6 +7,7 @@ import com.github.glusk.sveder.net.SpletnaStran;
 import com.github.glusk.sveder.net.SvederUrl;
 import com.github.glusk.sveder.net.UrlNaStrani;
 
+import org.apache.poi.ooxml.POIXMLException;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 
@@ -110,6 +111,15 @@ public final class ZdravstveniZavod {
             prazna.createSheet("NosilciTimaIZV");
             prazna.createSheet("CDIZV");
             return prazna;
+        } catch (POIXMLException e) {
+            throw
+                new IOException(
+                    String.format(
+                        "Napaka pri branju preglednice na: %s",
+                        urlPreglednice.url().toString()
+                    ),
+                    e
+                );
         }
     }
 }
