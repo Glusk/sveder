@@ -6,8 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.io.IOException;
 
-import com.github.glusk.sveder.net.SvederUrl;
-
 import org.junit.jupiter.api.Test;
 
 public final class TestZdravstveniZavod {
@@ -17,11 +15,9 @@ public final class TestZdravstveniZavod {
             7809,
             new NumericnaCelica(
                 new ZdravstveniZavod(
-                    new SvederUrl.UrlOvoj(
+                    () ->
                         this.getClass()
                             .getResource("ZOB_ZAVOD_D_IN_G_KOPER_UrnCD.xlsx")
-                            .toString()
-                    )
                 )
                 .preglednica()
                 .getSheet("NosilciTimaIZV")
@@ -40,11 +36,9 @@ public final class TestZdravstveniZavod {
     public void vrzeIzjemoCeJeNaURLjuPregledniceWordovDokument() {
         assertThrows(IOException.class, () ->
             new ZdravstveniZavod(
-                new SvederUrl.UrlOvoj(
+                () ->
                     this.getClass()
                         .getResource("PrazenWordovDokument.docx")
-                        .toString()
-                )
             )
             .preglednica()
         );

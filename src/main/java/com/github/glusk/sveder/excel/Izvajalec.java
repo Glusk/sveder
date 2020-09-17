@@ -1,12 +1,12 @@
 package com.github.glusk.sveder.excel;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import com.github.glusk.sveder.Sifra;
 import com.github.glusk.sveder.net.SpletnaStran;
-import com.github.glusk.sveder.net.SvederUrl;
 import com.github.glusk.sveder.orodja.RegularniIzraz;
 
 /**
@@ -29,7 +29,7 @@ public final class Izvajalec {
     public Izvajalec(final Sifra sifraIzvajalca) {
         this(
             new SpletnaStran(
-                new SvederUrl.UrlOvoj(
+                () -> new URL(
                     String.format(
                         "https://www.zzzs.si/ZZZS/pao/izvajalci.nsf/WEBJavniZasebni?OpenView&RestrictToCategory=%s&OE=DI&tip=0&Count=700&n=1012",
                         sifraIzvajalca.vrednost()

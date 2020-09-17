@@ -19,24 +19,4 @@ public interface SvederUrl {
      * @throws java.net.MalformedURLException če url ni veljaven
      */
     URL url() throws IOException;
-
-    /** Ovojnica za Javin {@link java.net.URL} razred.*/
-    final class UrlOvoj implements SvederUrl {
-        /** Ovit url. */
-        private final String url;
-        /**
-         * Zgradi nov {@code UrlOvoj} in ovije {@code url}.
-         *
-         * @param url url ki bo ovit
-         */
-        public UrlOvoj(final String url) {
-            this.url = url;
-        }
-
-        /** {@inheritDoc} */
-        @Override
-        public URL url() throws IOException {
-            return new URL(url);
-        }
-    }
 }
