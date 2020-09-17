@@ -97,7 +97,7 @@ v naslednji obliki in obsegu:
 Najdi ordinacije na podlagi *imena* zobozdravnika in *dejavnosti*, ki jo opravlja:
 
 ``` java
-import java.nio.IOException;
+import java.io.IOException;
 import com.github.glusk.sveder.Dejavnost;
 import com.github.glusk.sveder.excel.ExcelOrdinacije;
 import com.github.glusk.sveder.iskanje.OrdinacijeImeDejavnost;
