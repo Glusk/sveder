@@ -86,7 +86,7 @@ public final class ExcelOrdinacije implements Ordinacije {
         this(
             new UrlNaStrani(
                 new SpletnaStran(
-                    new SvederUrl.UrlOvoj(URL_STRANI)
+                    () -> new URL(URL_STRANI)
                 ),
                 STREZNIK,
                 RELATIVNA_POT + PREGLEDNICE_REP

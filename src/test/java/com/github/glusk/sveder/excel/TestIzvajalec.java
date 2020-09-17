@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.github.glusk.sveder.net.SpletnaStran;
-import com.github.glusk.sveder.net.SvederUrl;
 
 import org.junit.jupiter.api.Test;
 
@@ -15,11 +14,9 @@ public final class TestIzvajalec {
             250,
             new Izvajalec(
                 new SpletnaStran(
-                    new SvederUrl.UrlOvoj(
+                    () ->
                         this.getClass()
                             .getResource("seznamZavodov.txt")
-                            .toString()
-                    )
                 )
             ).zavodi().size()
         );

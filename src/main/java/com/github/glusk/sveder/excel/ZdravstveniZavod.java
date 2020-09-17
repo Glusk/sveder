@@ -2,6 +2,7 @@ package com.github.glusk.sveder.excel;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.URL;
 
 import com.github.glusk.sveder.net.SpletnaStran;
 import com.github.glusk.sveder.net.SvederUrl;
@@ -56,7 +57,7 @@ public final class ZdravstveniZavod {
         this(
             new UrlNaStrani(
                 new SpletnaStran(
-                    new SvederUrl.UrlOvoj(
+                    () -> new URL(
                         String.format(
                             "https://www.zzzs.si/zzzs/pao/pogizv.nsf/PoZZZSst/%d",
                             zzzsSt

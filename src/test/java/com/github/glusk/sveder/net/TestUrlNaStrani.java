@@ -15,11 +15,9 @@ public final class TestUrlNaStrani {
             "http://www.zzzs.si",
             new UrlNaStrani(
                 new SpletnaStran(
-                    new SvederUrl.UrlOvoj(
+                    () ->
                         this.getClass()
                             .getResource("stranZLinkom.txt")
-                            .toString()
-                    )
                 ),
                 "(?<=href=\").+(?=\">)"
             ).url().toString()
@@ -31,11 +29,9 @@ public final class TestUrlNaStrani {
         assertThrows(FileNotFoundException.class, () ->
             new UrlNaStrani(
                 new SpletnaStran(
-                    new SvederUrl.UrlOvoj(
+                    () ->
                         this.getClass()
                             .getResource("stranZLinkom.txt")
-                            .toString()
-                    )
                 ),
                 "http://foo.bar"
             ).url()
@@ -48,11 +44,9 @@ public final class TestUrlNaStrani {
             "http://www.zzzs.si/zzzs/pao/pogizv.nsf/49912aaadaf85317c1256e4a004e2209/5422a3e779b6d0acc125829f00427cd2/$FILE/ZOB%20ZAVOD%20D%20IN%20G%20KOPER_Urn%C4%8CD.xlsx",
             new UrlNaStrani(
                 new SpletnaStran(
-                    new SvederUrl.UrlOvoj(
+                    () ->
                         this.getClass()
                             .getResource("stranZavoda.txt")
-                            .toString()
-                    )
                 ),
                 "http://www.zzzs.si",
                 "(?<=href=\").+(?=\" title)"
