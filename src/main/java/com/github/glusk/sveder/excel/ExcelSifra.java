@@ -38,11 +38,11 @@ public final class ExcelSifra implements Sifra {
         switch (celica.getCellType()) {
             case NUMERIC:
                 return
-                    Integer.toString(
+                    Long.toString(
                         new NumericnaCelica(
                             vrstica,
                             indeksStolpca
-                        ).intValue()
+                        ).longValue()
                     );
             case STRING:
                 return celica.getStringCellValue().strip();
