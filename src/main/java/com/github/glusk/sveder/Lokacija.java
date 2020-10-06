@@ -7,11 +7,11 @@ import org.json.JSONObject;
 /** Lokacija zdravstvene ordinacije. */
 public interface Lokacija extends SvederTip {
     /**
-     * Vrne šifro te lokacije.
+     * Vrne pordobnosti te lokacije.
      *
-     * @return 6-mestna šifra lokacije
+     * @return vrne podrobnosti lokacije
      */
-    Sifra sifra();
+    PodrobnostiLokacije podrobnosti();
     /**
      * Vrne urnik zdravstvene ordinacije na tej lokaciji.
      *
@@ -22,7 +22,11 @@ public interface Lokacija extends SvederTip {
     @Override
     default JSONObject json() throws IOException {
         return new JSONObject()
-            .put("sifra", sifra().vrednost())
+            .put("sifra", podrobnosti().sifra().vrednost())
+            .put("naziv", podrobnosti().naziv())
+            .put("naslov", podrobnosti().naslov())
+            .put("posta", podrobnosti().posta().vrednost())
+            .put("telefon", podrobnosti().telefon())
             .put("urnik", urnik().json());
     }
 }

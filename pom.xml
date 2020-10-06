@@ -4,7 +4,7 @@
   <groupId>com.github.glusk</groupId>
   <artifactId>sveder</artifactId>
   <packaging>jar</packaging>
-  <version>0.2.1-SNAPSHOT</version>
+  <version>0.3.0-SNAPSHOT</version>
   <name>Sveder</name>
   <description>
     Java knjižnica za *vrtanje* po javno-dostopnih podatkih o zobozdravstvenih
