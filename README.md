@@ -35,6 +35,7 @@ v naslednji obliki in obsegu:
         "sifra": "string",
         "naziv": "string",
         "naslov": "string",
+        "posta": "string",
         "telefon": "string",
         "urnik": {
           "razpored": [
