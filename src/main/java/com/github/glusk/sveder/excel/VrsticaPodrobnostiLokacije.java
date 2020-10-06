@@ -10,7 +10,7 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Workbook;
 
 /**
- * Prva veljavna vrstica urnika v listu {@codeLokacijeIZV} preglednice
+ * Prva veljavna vrstica urnika v listu {@code LokacijeIZV} preglednice
  * zdravstvenega zavoda, ki ustreza ključu.
  *
  * @see JeVrsticaVeljavna
