@@ -3,23 +3,15 @@ package com.github.glusk.sveder.excel;
 import java.util.function.Predicate;
 
 import com.github.glusk.sveder.Sifra;
+import com.github.glusk.sveder.SifraLokacijeIzvajalca;
 
 import org.apache.poi.ss.usermodel.Row;
 
 /**
  * Ključ vrstic lista {@code LokacijeIZV} v Excel preglednici
  * {@code <Ime_zavoda>UrnČD.xlsx}.
- * <p>
- * Prvi stolpec je ključ 12-mesten ključ vrstic, ki je definiran takole:
- * <pre>
- * &lt;sifra izvajalca&gt; | &lt;sifra lokacije&gt;
- * </pre>
- * pri čemer je {@code |} oznaka za konkatenacijo nizov. Če se dožini šifer
- * ne seštejeta v 12, vmesni prostor zapolnijo ničle.
  */
 public final class KljucLokacijeIzvajalca implements Predicate<Row> {
-    /** Dolžina šifre stolpca "Šifra lokacije". */
-    private static final int DOLZINA_SIFRE = 12;
     /** Indeks stolpca "Šifra lokacije" v vrsticah preglednice. */
     private static final int STOLPEC_SIFRA_LOKACIJE = 0;
 
@@ -37,15 +29,7 @@ public final class KljucLokacijeIzvajalca implements Predicate<Row> {
         final Sifra sifraIzvajalca,
         final Sifra sifraLokacije
     ) {
-        this(() ->
-            sifraIzvajalca.vrednost()
-          + "0".repeat(
-              DOLZINA_SIFRE
-            - sifraIzvajalca.vrednost().length()
-            - sifraLokacije.vrednost().length()
-            )
-          + sifraLokacije.vrednost()
-        );
+        this(new SifraLokacijeIzvajalca(sifraIzvajalca, sifraLokacije));
     }
 
     /**
