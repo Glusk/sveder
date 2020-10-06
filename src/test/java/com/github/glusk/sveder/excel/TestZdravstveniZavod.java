@@ -1,37 +1,14 @@
 package com.github.glusk.sveder.excel;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import org.junit.jupiter.api.Test;
 
 public final class TestZdravstveniZavod {
-    @Test
-    public void najdeZdravnikaVPreglednici() throws IOException {
-        assertEquals(
-            7809,
-            new NumericnaCelica(
-                new ZdravstveniZavod(
-                    () ->
-                        this.getClass()
-                            .getResource("ZOB_ZAVOD_D_IN_G_KOPER_UrnCD.xlsx")
-                )
-                .preglednica()
-                .getSheet("NosilciTimaIZV")
-                .getRow(1),
-                0
-            ).intValue()
-        );
-    }
-    @Test
-    public void vrnePreglednicoZavodaZgrajenegaIzZzzsStevilke() {
-        assertDoesNotThrow(() ->
-            new ZdravstveniZavod(6189896).preglednica()
-        );
-    }
     @Test
     public void vrzeIzjemoCeJeNaURLjuPregledniceWordovDokument() {
         assertThrows(IOException.class, () ->
@@ -41,6 +18,14 @@ public final class TestZdravstveniZavod {
                         .getResource("PrazenWordovDokument.docx")
             )
             .preglednica()
+        );
+    }
+    @Test
+    public void neMeceIzjemeCeNeNajdeStraniSPreglednico() {
+        assertDoesNotThrow(() ->
+            new ZdravstveniZavod(() -> {
+                throw new FileNotFoundException();
+            }).preglednica()
         );
     }
 }
