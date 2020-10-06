@@ -12,13 +12,13 @@ public final class TestKljucOrdinacije {
     public void potrdiUjemanjeVrsticePoKljucu() throws IOException {
         assertTrue(
             new KljucOrdinacije(
-                () -> "25333",
+                () -> "12345",
                 () -> "404101",
-                () -> "7809"
+                () -> "1234"
             ).test(
                 WorkbookFactory.create(
                     this.getClass()
-                        .getResource("ZOB_ZAVOD_D_IN_G_KOPER_UrnCD.xlsx")
+                        .getResource("ZOBEK_UrnCD.xlsx")
                         .openStream()
                 ).getSheet("UrnikiIZV")
                  .getRow(1)
