@@ -7,6 +7,7 @@ import java.util.stream.StreamSupport;
 
 import com.github.glusk.sveder.Lokacija;
 import com.github.glusk.sveder.Lokacije;
+import com.github.glusk.sveder.PodrobnostiLokacije;
 import com.github.glusk.sveder.Sifra;
 import com.github.glusk.sveder.Urnik;
 
@@ -96,8 +97,13 @@ public final class LokacijeZdravstvenegaZavoda implements Lokacije {
                 .map(sifraLokacije ->
                     new Lokacija() {
                         @Override
-                        public Sifra sifra() {
-                            return sifraLokacije;
+                        public PodrobnostiLokacije podrobnosti() {
+                            return
+                                new PodrobnostiExcelLokacije(
+                                    zavod,
+                                    sifraIzvajalca,
+                                    sifraLokacije
+                                );
                         }
                         @Override
                         public Urnik urnik() throws IOException {
