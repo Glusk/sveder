@@ -22,6 +22,14 @@ public final class PodrobnostiExcelLokacije implements PodrobnostiLokacije {
     private static final int STOLPEC_TELEFON = 3;
     /** Indeks stolpca "Pošta" v listu {@code LokacijeIZV}. */
     private static final int STOLPEC_POSTA = 4;
+    /**
+     * Indeks stolpca "Datum začetka veljavnosti" v listu {@code LokacijeIZV}.
+     */
+    private static final int STOLPEC_ZACETEK_VELJAVNOSTI = 7;
+    /**
+     * Indeks stolpca "Datum konca veljavnosti" v listu {@code LokacijeIZV}.
+     */
+    private static final int STOLPEC_KONEC_VELJAVNOSTI = 9;
 
     /** Vrstica lista {@code LokacijeIZV}. */
     private final ExcelVrstica vrsticaPodrobnostiLokacije;
@@ -40,10 +48,15 @@ public final class PodrobnostiExcelLokacije implements PodrobnostiLokacije {
         final Sifra sifraLokacije
     ) {
         this(
-            new VrsticaPodrobnostiLokacije(
+            new PrvaVeljavnaVrsticaPoKljucu(
                 zavod,
-                sifraIzvajalca,
-                sifraLokacije
+                "LokacijeIZV",
+                STOLPEC_ZACETEK_VELJAVNOSTI,
+                STOLPEC_KONEC_VELJAVNOSTI,
+                new KljucLokacijeIzvajalca(
+                    sifraIzvajalca,
+                    sifraLokacije
+                )
             )
         );
     }

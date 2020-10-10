@@ -26,25 +26,16 @@ public final class ExcelUrnik implements Urnik {
     private static final int STOLPEC_OPOMBE = 20;
      /** Indeks stolpca "Opombe malica" v listu {@code UrnikiIZV}. */
     private static final int STOLPEC_OPOMBE_MALICA = 21;
+    /** Indeks stolpca "Datum začetka veljavnosti" v listu {@code UrnikiIZV}. */
+    private static final int STOLPEC_ZACETEK_VELJAVNOSTI = 41;
+    /** Indeks stolpca "Datum konca veljavnosti" v listu {@code UrnikiIZV}. */
+    private static final int STOLPEC_KONEC_VELJAVNOSTI = 43;
     /** Excel vrstica s podatki o urniku ordinacije. */
     private final ExcelVrstica vrsticaUrnika;
 
     /**
      * Zgradi nov Excel urnik iz vrstice urnika po ključu lokacije
      * ordinacije.
-     * <p>
-     * Enako kot:
-     * <pre>
-     * new ExcelUrnik(
-     *     new VrsticaUrnika(
-     *         zavod,
-     *         sifraIzvajalca,
-     *         sifraDejavnosti,
-     *         sifraZdravnika,
-     *         sifraLokacije
-     *     )
-     * );
-     * </pre>
      *
      * @param zavod zdravstveni zavod s preglednico, ki vsebuje podatke
      *              o urniku ordinacije
@@ -52,7 +43,6 @@ public final class ExcelUrnik implements Urnik {
      * @param sifraDejavnosti stolpec "Dejavnost" ključa
      * @param sifraZdravnika stolpec "Nosilec" ključa
      * @param sifraLokacije stolpec "Lokacija" ključa
-     * @see VrsticaUrnika
      */
     public ExcelUrnik(
         final ZdravstveniZavod zavod,
@@ -62,12 +52,17 @@ public final class ExcelUrnik implements Urnik {
         final Sifra sifraLokacije
     ) {
         this(
-            new VrsticaUrnika(
+            new PrvaVeljavnaVrsticaPoKljucu(
                 zavod,
-                sifraIzvajalca,
-                sifraDejavnosti,
-                sifraZdravnika,
-                sifraLokacije
+                "UrnikiIZV",
+                STOLPEC_ZACETEK_VELJAVNOSTI,
+                STOLPEC_KONEC_VELJAVNOSTI,
+                new KljucLokacijeOrdinacije(
+                    sifraIzvajalca,
+                    sifraDejavnosti,
+                    sifraZdravnika,
+                    sifraLokacije
+                )
             )
         );
     }
