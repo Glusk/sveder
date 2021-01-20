@@ -81,7 +81,7 @@ public final class LokacijeZdravstvenegaZavoda implements Lokacije {
                         STOLPEC_KONEC_VELJAVNOSTI
                     ).test()
                     &&
-                    new KljucOrdinacije(
+                    new Kljuc(
                         sifraIzvajalca,
                         sifraDejavnosti,
                         sifraZdravnika

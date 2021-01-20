@@ -9,10 +9,66 @@ import org.apache.poi.ss.usermodel.Row;
 
 /** Ključ vrstic listov v Excel preglednicah. */
 public final class Kljuc implements Predicate<Row> {
+    /**
+     * Indeks stolpca "Izvajalec" v vrsticah listov {@code UrnikiIZV} in
+     * {@code CDIZV} preglednic {@code <Ime_zavoda>UrnČD.xlsx}.
+     */
+    private static final int STOLPEC_IZVAJALEC = 0;
+    /**
+     * Indeks stolpca "Dejavnost" v vrsticah listov {@code UrnikiIZV} in
+     * {@code CDIZV} preglednic {@code <Ime_zavoda>UrnČD.xlsx}.
+     */
+    private static final int STOLPEC_DEJAVNOST = 1;
+    /**
+     * Indeks stolpca "Nosilec" v vrsticah listov {@code UrnikiIZV} in
+     * {@code CDIZV} preglednic {@code <Ime_zavoda>UrnČD.xlsx}.
+     */
+    private static final int STOLPEC_NOSILEC = 3;
+
     /** Indeksi stolpcev tega ključa. */
     private final int[] indeksi;
     /** Vrednosti stolpcev tega ključa. */
     private final Sifra[] vrednosti;
+
+    /**
+     * Sestavi nov ključ <em>ordinacije</em> s podanimi vrednostmi
+     * stolpcev ključa.
+     * <p>
+     * Ta ključ lahko upoabimo v listih {@code UrnikiIZV} in {@code CDIZV}
+     * preglednic {@code <Ime_zavoda>UrnČD.xlsx}.
+     * <p>
+     * Prvi štirje stolpci (<em>Izvajalec</em>, <em>Dejavnost</em>,
+     * <em>Lokacija</em> in <em>Nosilec</em>) v vrstici enolično določajo
+     * vrstico. Ta konstruktor vzame za ključ samo stolpce: <em>Izvajalec</em>,
+     * <em>Dejavnost</em> in <em>Nosilec</em>.
+     * <p>
+     * V Svedru je ordinacija enolično določena z zdravnikom, izvajalcem in
+     * vrsto dejavnosti, zato lahko rečemo da je ta razred ključ ordinacije.
+     *
+     * @see com.github.glusk.sveder.Ordinacija
+     *
+     * @param sifraIzvajalca vrednost stolpca "Izvajalec" tega ključa
+     * @param sifraDejavnosti vrednost stolpca "Dejavnost" tega ključa
+     * @param sifraZdravnika vrednost stolpca "Nosilec" tega ključa
+     */
+    public Kljuc(
+        final Sifra sifraIzvajalca,
+        final Sifra sifraDejavnosti,
+        final Sifra sifraZdravnika
+    ) {
+        this(
+            new int[] {
+                STOLPEC_IZVAJALEC,
+                STOLPEC_DEJAVNOST,
+                STOLPEC_NOSILEC
+            },
+            new Sifra[] {
+                sifraIzvajalca,
+                sifraDejavnosti,
+                sifraZdravnika
+            }
+        );
+    }
     /**
      * Sestavi nov ključ s podanimi indeksi in vrednostmi šifer ključa.
      * <p>
@@ -66,7 +122,7 @@ public final class Kljuc implements Predicate<Row> {
                                 indeksi[i]
                             )
                             .vrednost()
-                            .equals(vrednosti[i])
+                            .equals(vrednosti[i].vrednost())
                         )
                         .reduce(Boolean::logicalAnd)
                         .get();

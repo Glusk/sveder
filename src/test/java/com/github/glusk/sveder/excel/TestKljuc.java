@@ -7,11 +7,11 @@ import java.io.IOException;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.junit.jupiter.api.Test;
 
-public final class TestKljucOrdinacije {
+public final class TestKljuc {
     @Test
-    public void potrdiUjemanjeVrsticePoKljucu() throws IOException {
+    public void najdeOrdinacijoPoKljucu() throws IOException {
         assertTrue(
-            new KljucOrdinacije(
+            new Kljuc(
                 () -> "12345",
                 () -> "404101",
                 () -> "1234"
