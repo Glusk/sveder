@@ -57,7 +57,7 @@ public final class ExcelUrnik implements Urnik {
                 "UrnikiIZV",
                 STOLPEC_ZACETEK_VELJAVNOSTI,
                 STOLPEC_KONEC_VELJAVNOSTI,
-                new KljucLokacijeOrdinacije(
+                new Kljuc(
                     sifraIzvajalca,
                     sifraDejavnosti,
                     sifraZdravnika,

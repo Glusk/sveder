@@ -53,7 +53,7 @@ public final class PodrobnostiExcelLokacije implements PodrobnostiLokacije {
                 "LokacijeIZV",
                 STOLPEC_ZACETEK_VELJAVNOSTI,
                 STOLPEC_KONEC_VELJAVNOSTI,
-                new KljucLokacijeIzvajalca(
+                new Kljuc(
                     sifraIzvajalca,
                     sifraLokacije
                 )
