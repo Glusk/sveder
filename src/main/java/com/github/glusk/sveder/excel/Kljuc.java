@@ -21,6 +21,11 @@ public final class Kljuc implements Predicate<Row> {
      */
     private static final int STOLPEC_DEJAVNOST = 1;
     /**
+     * Indeks stolpca "Lokacija" v vrsticah listov {@code UrnikiIZV} in
+     * {@code CDIZV} preglednic {@code <Ime_zavoda>UrnČD.xlsx}.
+     */
+    private static final int STOLPEC_LOKACIJA = 2;
+    /**
      * Indeks stolpca "Nosilec" v vrsticah listov {@code UrnikiIZV} in
      * {@code CDIZV} preglednic {@code <Ime_zavoda>UrnČD.xlsx}.
      */
@@ -36,6 +41,46 @@ public final class Kljuc implements Predicate<Row> {
     private final int[] indeksi;
     /** Vrednosti stolpcev tega ključa. */
     private final Sifra[] vrednosti;
+
+
+    /**
+     * Sestavi nov ključ <em>lokacije ordinacije</em> s podanimi vrednostmi
+     * stolpcev ključa.
+     * <p>
+     * Ta ključ lahko upoabimo v listih {@code UrnikiIZV} in {@code CDIZV}
+     * preglednic {@code <Ime_zavoda>UrnČD.xlsx}.
+     * <p>
+     * Prvi štirje stolpci (<em>Izvajalec</em>, <em>Dejavnost</em>,
+     * <em>Lokacija</em> in <em>Nosilec</em>) v vrstici enolično določajo
+     * vrstico.
+     *
+     * @see com.github.glusk.sveder.Ordinacija
+     * @param sifraIzvajalca vrednost stolpca "Izvajalec" tega ključa
+     * @param sifraDejavnosti vrednost stolpca "Dejavnost" tega ključa
+     * @param sifraZdravnika vrednost stolpca "Nosilec" tega ključa
+     * @param sifraLokacije vrednost stolpca "Lokacija" tega ključa
+     */
+    public Kljuc(
+        final Sifra sifraIzvajalca,
+        final Sifra sifraDejavnosti,
+        final Sifra sifraZdravnika,
+        final Sifra sifraLokacije
+    ) {
+        this(
+            new int[] {
+                STOLPEC_IZVAJALEC,
+                STOLPEC_DEJAVNOST,
+                STOLPEC_NOSILEC,
+                STOLPEC_LOKACIJA
+            },
+            new Sifra[] {
+                sifraIzvajalca,
+                sifraDejavnosti,
+                sifraZdravnika,
+                sifraLokacije
+            }
+        );
+    }
 
     /**
      * Sestavi nov ključ <em>ordinacije</em> s podanimi vrednostmi

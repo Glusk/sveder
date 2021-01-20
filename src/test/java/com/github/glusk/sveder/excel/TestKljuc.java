@@ -41,4 +41,22 @@ public final class TestKljuc {
             )
         );
     }
+    @Test
+    public void najdeLokacijoOrdinacijePoKljucu() throws IOException {
+        assertTrue(
+            new Kljuc(
+                () -> "12345",
+                () -> "404101",
+                () -> "1234",
+                () -> "10101"
+            ).test(
+                WorkbookFactory.create(
+                    this.getClass()
+                        .getResource("ZOBEK_UrnCD.xlsx")
+                        .openStream()
+                ).getSheet("UrnikiIZV")
+                 .getRow(1)
+            )
+        );
+    }
 }
