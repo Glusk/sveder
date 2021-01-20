@@ -4,6 +4,7 @@ import java.util.function.Predicate;
 import java.util.stream.IntStream;
 
 import com.github.glusk.sveder.Sifra;
+import com.github.glusk.sveder.SifraLokacijeIzvajalca;
 
 import org.apache.poi.ss.usermodel.Row;
 
@@ -24,6 +25,12 @@ public final class Kljuc implements Predicate<Row> {
      * {@code CDIZV} preglednic {@code <Ime_zavoda>UrnČD.xlsx}.
      */
     private static final int STOLPEC_NOSILEC = 3;
+
+    /**
+     * Indeks stolpca "Šifra lokacije" v vrsticah listov {@code LokacijeIZV}
+     * preglednic {@code <Ime_zavoda>UrnČD.xlsx}.
+     */
+    private static final int STOLPEC_SIFRA_LOKACIJE = 0;
 
     /** Indeksi stolpcev tega ključa. */
     private final int[] indeksi;
@@ -69,6 +76,33 @@ public final class Kljuc implements Predicate<Row> {
             }
         );
     }
+
+    /**
+     * Sestavi nov ključ lokacije izvajalca s podanima šiframa lokacije
+     * in izvajalca.
+     * <p>
+     * Ta ključ lahko uporabimo v listih {@code LokacijeIZV} preglednic
+     * {@code <Ime_zavoda>UrnČD.xlsx}.
+     *
+     * @see com.github.glusk.sveder.SifraLokacijeIzvajalca
+     * @param sifraIzvajalca šifra izvajalca tega ključa
+     * @param sifraLokacije šifra lokacije tega ključa
+     */
+    public Kljuc(
+        final Sifra sifraIzvajalca,
+        final Sifra sifraLokacije
+    ) {
+        this(
+            new int[] {STOLPEC_SIFRA_LOKACIJE},
+            new Sifra[] {
+                new SifraLokacijeIzvajalca(
+                    sifraIzvajalca,
+                    sifraLokacije
+                )
+            }
+        );
+    }
+
     /**
      * Sestavi nov ključ s podanimi indeksi in vrednostmi šifer ključa.
      * <p>
