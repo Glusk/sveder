@@ -54,11 +54,11 @@ public final class Kljuc implements Predicate<Row> {
      * <em>Lokacija</em> in <em>Nosilec</em>) v vrstici enolično določajo
      * vrstico.
      *
-     * @see com.github.glusk.sveder.Ordinacija
      * @param sifraIzvajalca vrednost stolpca "Izvajalec" tega ključa
      * @param sifraDejavnosti vrednost stolpca "Dejavnost" tega ključa
      * @param sifraZdravnika vrednost stolpca "Nosilec" tega ključa
      * @param sifraLokacije vrednost stolpca "Lokacija" tega ključa
+     * @see com.github.glusk.sveder.Ordinacija
      */
     public Kljuc(
         final Sifra sifraIzvajalca,
@@ -97,11 +97,10 @@ public final class Kljuc implements Predicate<Row> {
      * V Svedru je ordinacija enolično določena z zdravnikom, izvajalcem in
      * vrsto dejavnosti, zato lahko rečemo da je ta razred ključ ordinacije.
      *
-     * @see com.github.glusk.sveder.Ordinacija
-     *
      * @param sifraIzvajalca vrednost stolpca "Izvajalec" tega ključa
      * @param sifraDejavnosti vrednost stolpca "Dejavnost" tega ključa
      * @param sifraZdravnika vrednost stolpca "Nosilec" tega ključa
+     * @see com.github.glusk.sveder.Ordinacija
      */
     public Kljuc(
         final Sifra sifraIzvajalca,
@@ -129,9 +128,9 @@ public final class Kljuc implements Predicate<Row> {
      * Ta ključ lahko uporabimo v listih {@code LokacijeIZV} preglednic
      * {@code <Ime_zavoda>UrnČD.xlsx}.
      *
-     * @see com.github.glusk.sveder.SifraLokacijeIzvajalca
      * @param sifraIzvajalca šifra izvajalca tega ključa
      * @param sifraLokacije šifra lokacije tega ključa
+     * @see com.github.glusk.sveder.SifraLokacijeIzvajalca
      */
     public Kljuc(
         final Sifra sifraIzvajalca,
