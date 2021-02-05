@@ -16,6 +16,7 @@ import com.github.glusk.sveder.net.SpletnaStran;
 import com.github.glusk.sveder.net.SvederUrl;
 import com.github.glusk.sveder.net.UrlNaStrani;
 
+import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 
@@ -57,11 +58,6 @@ public final class ExcelOrdinacije implements Ordinacije {
      * dejavnosti.
      */
     private static final int MAGIC_OE_SKUPNO = 9999;
-    /**
-     * Število vrstic na začetku lista, ki niso podatki (oznake stolpcev,
-     * podatki o datumu objave, ...).
-     */
-    private static final int ST_META_VRSTIC = 6;
     /** Index stolpca "Šifra OE izvajalca". */
     private static final int STOLPEC_OE_IZVAJALCA = 0;
     /** Index stolpca "Šifra izvajalca". */
@@ -136,8 +132,13 @@ public final class ExcelOrdinacije implements Ordinacije {
         ) {
             return StreamSupport
                 .stream(wb.getSheetAt(0).spliterator(), false)
-                .skip(ST_META_VRSTIC)
                 .filter(vrstica ->
+                    vrstica.getCell(STOLPEC_OE_IZVAJALCA) != null
+                    &&
+                    vrstica.getCell(STOLPEC_OE_IZVAJALCA)
+                           .getCellType()
+                           .equals(CellType.NUMERIC)
+                    &&
                     new NumericnaCelica(
                         vrstica,
                         STOLPEC_OE_IZVAJALCA
