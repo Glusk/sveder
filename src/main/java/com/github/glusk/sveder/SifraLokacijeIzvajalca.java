@@ -3,17 +3,15 @@ package com.github.glusk.sveder;
 /**
  * Šifra lokacije izvajalca.
  * <p>
- * Šifra lokacije izvajalca je 12 mestna šifra, zgrajena iz cifer, in
- * definirana takole:
+ * Šifra lokacije izvajalca je definirana takole:
  * <pre>
  * &lt;sifra izvajalca&gt; | &lt;sifra lokacije&gt;
  * </pre>
- * pri čemer je {@code |} oznaka za konkatenacijo nizov. Če se dožini šifer
- * ne seštejeta v 12, vmesni prostor zapolnijo ničle.
+ * pri čemer je {@code |} oznaka za konkatenacijo nizov.
+ * <p>
+ * Če {@code sifra lokacije} ni sedemmestna, je spredaj poravnana z ničlami.
  */
 public final class SifraLokacijeIzvajalca implements Sifra {
-    /** Dolžina šifre stolpca "Šifra lokacije". */
-    private static final int DOLZINA_SIFRE = 12;
     /** Šifra izvajalca. */
     private final Sifra sifraIzvajalca;
     /** Šifra lokacije. */
@@ -36,12 +34,10 @@ public final class SifraLokacijeIzvajalca implements Sifra {
     @Override
     public String vrednost() {
         return
-            sifraIzvajalca.vrednost()
-          + "0".repeat(
-                DOLZINA_SIFRE
-              - sifraIzvajalca.vrednost().length()
-              - sifraLokacije.vrednost().length()
-            )
-          + sifraLokacije.vrednost();
+            String.format(
+                "%d%07d",
+                Integer.parseInt(sifraIzvajalca.vrednost()),
+                Integer.parseInt(sifraLokacije.vrednost())
+            );
     }
 }
