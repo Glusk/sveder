@@ -6,9 +6,9 @@ import org.junit.jupiter.api.Test;
 
 public final class TestSifraLokacijeIzvajalca {
     @Test
-    public void pravilnoPoravnaSifroNaDvanastMest() {
+    public void pravilnoPoravnaSifro() {
         assertEquals(
-            "123000000321",
+            "1230000321",
             new SifraLokacijeIzvajalca(
                 () -> "123",
                 () -> "321"
