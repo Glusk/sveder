@@ -31,7 +31,7 @@ public final class Izvajalec {
             new SpletnaStran(
                 () -> new URL(
                     String.format(
-                        "https://www.zzzs.si/ZZZS/pao/izvajalci.nsf/WEBJavniZasebni?OpenView&RestrictToCategory=%s&OE=DI&tip=0&Count=700&n=1012",
+                        "https://api.zzzs.si/ZZZS/pao/izvajalci.nsf/WEBJavniZasebni?OpenView&RestrictToCategory=%s&OE=DI&tip=0&Count=700&n=1012",
                         sifraIzvajalca.vrednost()
                     )
                 )

@@ -47,7 +47,7 @@ public final class ZdravstveniZavod {
      * Zgradi nov zavod iz ZZZS številke.
      * <p>
      * Na spletni strani:
-     * http://www.zzzs.si/zzzs/pao/pogizv.nsf/PoZZZSst/<strong>{@code zzzsSt}</strong>
+     * http://api.zzzs.si/zzzs/pao/pogizv.nsf/PoZZZSst/<strong>{@code zzzsSt}</strong>
      * <br>
      * se nahaja link do {@code .xlsx} datoteke tega zavoda.
      *
@@ -59,12 +59,12 @@ public final class ZdravstveniZavod {
                 new SpletnaStran(
                     () -> new URL(
                         String.format(
-                            "https://www.zzzs.si/zzzs/pao/pogizv.nsf/PoZZZSst/%d",
+                            "https://api.zzzs.si/zzzs/pao/pogizv.nsf/PoZZZSst/%d",
                             zzzsSt
                         )
                     )
                 ),
-                "https://www.zzzs.si",
+                "https://api.zzzs.si",
                 "(?<=href=\").+(?=\" title)"
             )
         );
