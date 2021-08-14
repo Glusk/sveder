@@ -1,11 +1,11 @@
 package com.github.glusk.sveder.net;
 
-import java.util.List;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 
-import com.github.glusk.sveder.orodja.RegularniIzraz;
+import org.jsoup.Jsoup;
+import org.jsoup.select.Elements;
 
 /** URL na spletni strani. */
 public final class UrlNaStrani implements SvederUrl {
@@ -14,7 +14,7 @@ public final class UrlNaStrani implements SvederUrl {
     /** Opcijska predpona, ki jo pripnemo na začetek URL ujemanja. */
     private final String predpona;
     /** Regularni izraz - ključ po katerem iščemo URL {@link #stran}i. */
-    private final String regexUrl;
+    private final String jsoupPoizvedba;
 
     /**
      * Ekvivalentno klicu:
@@ -43,11 +43,11 @@ public final class UrlNaStrani implements SvederUrl {
     public UrlNaStrani(
         final SpletnaStran stran,
         final String predpona,
-        final String regexUrl
+        final String jsoupPoizvedba
     ) {
         this.stran = stran;
         this.predpona = predpona;
-        this.regexUrl = regexUrl;
+        this.jsoupPoizvedba = jsoupPoizvedba;
     }
 
     /**
@@ -66,26 +66,20 @@ public final class UrlNaStrani implements SvederUrl {
      */
     @Override
     public URL url() throws IOException {
-        List<String> ujemanja =
-            new RegularniIzraz(
-                stran.vsebina(),
-                regexUrl
-            ).ujemanja();
-        if (ujemanja.isEmpty()) {
+        Elements result =
+            Jsoup.parse(stran.vsebina())
+                 .select(jsoupPoizvedba);
+        if (result.isEmpty()) {
             throw
                 new FileNotFoundException(
                     String.format(
                         "Na spletni strani \"%s\" ni URL-ja,"
-                      + "ki bi ustrezal vzorcu: %s",
+                        + "ki bi ustrezal Jsoup poizvedbi: %s",
                         stran.urlNaslov(),
-                        regexUrl
+                        jsoupPoizvedba
                     )
                 );
         }
-        return
-            new URL(
-                predpona
-              + ujemanja.get(0)
-            );
+        return new URL(predpona + result.first().attr("href").strip());
     }
 }

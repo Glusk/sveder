@@ -19,7 +19,7 @@ public final class TestUrlNaStrani {
                         this.getClass()
                             .getResource("stranZLinkom.txt")
                 ),
-                "(?<=href=\").+(?=\">)"
+                "a[href]"
             ).url().toString()
         );
     }
@@ -33,7 +33,7 @@ public final class TestUrlNaStrani {
                         this.getClass()
                             .getResource("stranZLinkom.txt")
                 ),
-                "http://foo.bar"
+                "div[href]"
             ).url()
         );
     }
@@ -49,7 +49,7 @@ public final class TestUrlNaStrani {
                             .getResource("stranZavoda.txt")
                 ),
                 "http://www.zzzs.si",
-                "(?<=href=\").+(?=\" title)"
+                "td.izvajal a[href]"
             ).url().toString()
         );
     }
