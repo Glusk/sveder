@@ -7,7 +7,8 @@ import java.util.stream.Collectors;
 
 import com.github.glusk.sveder.Sifra;
 import com.github.glusk.sveder.net.SpletnaStran;
-import com.github.glusk.sveder.orodja.RegularniIzraz;
+
+import org.jsoup.Jsoup;
 
 /**
  * Izvajalec zdravstvenih storitev.
@@ -56,11 +57,10 @@ public final class Izvajalec {
      *                     izvajalca
      */
     public List<ZdravstveniZavod> zavodi() throws IOException {
-        return
-            new RegularniIzraz(
-                stranIzvajalca.vsebina(),
-                "(?<=ZZZS št. )\\d{6,7}"
-            ).ujemanja().stream()
+        return Jsoup.parse(stranIzvajalca.vsebina())
+            .select("td:containsOwn(ZZZS št.)")
+            .stream()
+            .map(e -> e.text().replaceAll("\\D+", ""))
             .map(zzzsSt -> new ZdravstveniZavod((zzzsSt)))
             .collect(Collectors.toList());
     }
