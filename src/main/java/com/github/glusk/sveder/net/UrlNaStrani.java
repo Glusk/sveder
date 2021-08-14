@@ -15,8 +15,6 @@ public final class UrlNaStrani implements SvederUrl {
     private final String predpona;
     /** Regularni izraz - ključ po katerem iščemo URL {@link #stran}i. */
     private final String regexUrl;
-    /** Opcijska pripona, ki jo pripnemo na konec URL ujemanja. */
-    private final String pripona;
 
     /**
      * Ekvivalentno klicu:
@@ -32,26 +30,7 @@ public final class UrlNaStrani implements SvederUrl {
         final SpletnaStran stran,
         final String regexUrl
     ) {
-        this(stran, "", regexUrl, "");
-    }
-
-    /**
-     * Ekvivalentno klicu:
-     * <br>
-     * {@code new UrlNaStrani(stran, predpona, regexUrl, "")}.
-     * <br>
-     * Glej: {@link #UrlNaStrani(SpletnaStran, String, String, String)}
-     *
-     * @param stran stran na kateri se nahaja url
-     * @param predpona opcijska predpona, ki jo dodamo ujemanju
-     * @param regexUrl regularni izraz - ključ po katerem iščemo url
-     */
-    public UrlNaStrani(
-        final SpletnaStran stran,
-        final String predpona,
-        final String regexUrl
-    ) {
-        this(stran, predpona, regexUrl, "");
+        this(stran, "", regexUrl);
     }
 
     /**
@@ -60,18 +39,15 @@ public final class UrlNaStrani implements SvederUrl {
      * @param stran stran na kateri se nahaja URL
      * @param predpona opcijska predpona, ki jo pripnemo na začetek URL ujemanja
      * @param regexUrl regularni izraz - ključ po katerem iščemo URL
-     * @param pripona opcijska pripona, ki jo pripnemo na konec URL ujemanja
      */
     public UrlNaStrani(
         final SpletnaStran stran,
         final String predpona,
-        final String regexUrl,
-        final String pripona
+        final String regexUrl
     ) {
         this.stran = stran;
         this.predpona = predpona;
         this.regexUrl = regexUrl;
-        this.pripona = pripona;
     }
 
     /**
@@ -110,7 +86,6 @@ public final class UrlNaStrani implements SvederUrl {
             new URL(
                 predpona
               + ujemanja.get(0)
-              + pripona
             );
     }
 }
