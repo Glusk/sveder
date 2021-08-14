@@ -65,7 +65,7 @@ public final class ZdravstveniZavod {
                     )
                 ),
                 "https://api.zzzs.si",
-                "(?<=href=\").+(?=\" title)"
+                "td.izvajal a[href]"
             )
         );
     }

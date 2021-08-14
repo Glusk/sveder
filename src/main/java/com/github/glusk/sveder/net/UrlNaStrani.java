@@ -1,116 +1,101 @@
 package com.github.glusk.sveder.net;
 
-import java.util.List;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 
-import com.github.glusk.sveder.orodja.RegularniIzraz;
+import org.jsoup.Jsoup;
+import org.jsoup.select.Elements;
 
 /** URL na spletni strani. */
 public final class UrlNaStrani implements SvederUrl {
     /** Spletna stran na kateri se nahaja URL. */
     private final SpletnaStran stran;
-    /** Opcijska predpona, ki jo pripnemo na začetek URL ujemanja. */
+    /**
+     * Opcijska predpona, ki jo dodamo rezultatu Jsoup poizvedbe, da zgradimo
+     * ta URL.
+     */
     private final String predpona;
-    /** Regularni izraz - ključ po katerem iščemo URL {@link #stran}i. */
-    private final String regexUrl;
-    /** Opcijska pripona, ki jo pripnemo na konec URL ujemanja. */
-    private final String pripona;
+    /**
+     * Jsoup poizvedba s katero poiščemo ustrezen element, ki mora vsebovati
+     * atribut "href", na {@code stran}i. Glej:
+     * https://jsoup.org/cookbook/extracting-data/selector-syntax
+     * za več informacij o sintaksi.
+     */
+    private final String jsoupPoizvedba;
 
     /**
      * Ekvivalentno klicu:
      * <br>
-     * {@code new UrlNaStrani(stran, "", regexUrl, "")}.
+     * {@code new UrlNaStrani(stran, "", jsoupPoizvedba)}.
      * <br>
-     * Glej: {@link #UrlNaStrani(SpletnaStran, String, String, String)}
-     *
-     * @param stran stran na kateri se nahaja url
-     * @param regexUrl regularni izraz - ključ po katerem iščemo url
-     */
-    public UrlNaStrani(
-        final SpletnaStran stran,
-        final String regexUrl
-    ) {
-        this(stran, "", regexUrl, "");
-    }
-
-    /**
-     * Ekvivalentno klicu:
-     * <br>
-     * {@code new UrlNaStrani(stran, predpona, regexUrl, "")}.
-     * <br>
-     * Glej: {@link #UrlNaStrani(SpletnaStran, String, String, String)}
-     *
-     * @param stran stran na kateri se nahaja url
-     * @param predpona opcijska predpona, ki jo dodamo ujemanju
-     * @param regexUrl regularni izraz - ključ po katerem iščemo url
-     */
-    public UrlNaStrani(
-        final SpletnaStran stran,
-        final String predpona,
-        final String regexUrl
-    ) {
-        this(stran, predpona, regexUrl, "");
-    }
-
-    /**
-     * Zgradi nov URL, ki se ujema z {@code regexUrl} na tej {@code stran}i.
+     * Glej: {@link #UrlNaStrani(SpletnaStran, String, String)}
      *
      * @param stran stran na kateri se nahaja URL
-     * @param predpona opcijska predpona, ki jo pripnemo na začetek URL ujemanja
-     * @param regexUrl regularni izraz - ključ po katerem iščemo URL
-     * @param pripona opcijska pripona, ki jo pripnemo na konec URL ujemanja
+     * @param jsoupPoizvedba Jsoup poizvedba s katero poiščemo ustrezen
+     *                       element, ki mora vsebovati atribut
+     *                       "href", na {@code stran}i. Glej:
+     *                       https://jsoup.org/cookbook/extracting-data/selector-syntax
+     *                       za več informacij o sintaksi.
+     */
+    public UrlNaStrani(
+        final SpletnaStran stran,
+        final String jsoupPoizvedba
+    ) {
+        this(stran, "", jsoupPoizvedba);
+    }
+
+    /**
+     * Zgradi nov URL, ki je rezultat Jsoup poizvedbe na tej {@code stran}i.
+     * <p>
+     * Uporabi se vrednost atributa "href" prvega elementa rezultata. Skupaj s
+     * predpono {@code predpona} tvorita ta URL.
+     *
+     * @param stran stran na kateri se nahaja URL
+     * @param predpona opcijska predpona, ki jo dodamo rezultatu Jsoup
+     *                 poizvedbe, da zgradimo ta URL
+     * @param jsoupPoizvedba Jsoup poizvedba s katero poiščemo ustrezen
+     *                       element, ki mora vsebovati atribut
+     *                       "href", na {@code stran}i. Glej:
+     *                       https://jsoup.org/cookbook/extracting-data/selector-syntax
+     *                       za več informacij o sintaksi.
      */
     public UrlNaStrani(
         final SpletnaStran stran,
         final String predpona,
-        final String regexUrl,
-        final String pripona
+        final String jsoupPoizvedba
     ) {
         this.stran = stran;
         this.predpona = predpona;
-        this.regexUrl = regexUrl;
-        this.pripona = pripona;
+        this.jsoupPoizvedba = jsoupPoizvedba;
     }
 
     /**
      * Vrne URL na strani.
-     * <p>
-     * Z regularnim izrazom se poišče prvo ujemanje na strani. Ujemanju se
-     * z leve strani doda predpona in z desne pripona. Metoda vrne dobljen
-     * rezultat kot nov URL.
      *
      * @return novo instanco iskanega URL-ja na strani
-     * @throws IOException če pride do napak pri branju strani če na strani
+     * @throws IOException če pride do napak pri branju strani
      * @throws FileNotFoundException če na strani ni URL naslova, ki se ujema z
-     *                               {@code regexUrl}, podanim prek
+     *                               nizom {@code jsoupPoizvedba}, podanim prek
      *                               konstruktorja
      * @throws java.net.MalformedURLException če URL ni veljaven
      */
     @Override
     public URL url() throws IOException {
-        List<String> ujemanja =
-            new RegularniIzraz(
-                stran.vsebina(),
-                regexUrl
-            ).ujemanja();
-        if (ujemanja.isEmpty()) {
+        Elements result =
+            Jsoup.parse(stran.vsebina())
+                 .select(jsoupPoizvedba);
+        if (result.isEmpty()) {
             throw
                 new FileNotFoundException(
                     String.format(
                         "Na spletni strani \"%s\" ni URL-ja,"
-                      + "ki bi ustrezal vzorcu: %s",
+                        + "ki bi ustrezal Jsoup poizvedbi: %s",
                         stran.urlNaslov(),
-                        regexUrl
+                        jsoupPoizvedba
                     )
                 );
         }
-        return
-            new URL(
-                predpona
-              + ujemanja.get(0)
-              + pripona
-            );
+        return new URL(predpona + result.first().attr("href").strip());
     }
 }
