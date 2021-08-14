@@ -11,34 +11,54 @@ import org.jsoup.select.Elements;
 public final class UrlNaStrani implements SvederUrl {
     /** Spletna stran na kateri se nahaja URL. */
     private final SpletnaStran stran;
-    /** Opcijska predpona, ki jo pripnemo na začetek URL ujemanja. */
+    /**
+     * Opcijska predpona, ki jo dodamo rezultatu Jsoup poizvedbe, da zgradimo
+     * ta URL.
+     */
     private final String predpona;
-    /** Regularni izraz - ključ po katerem iščemo URL {@link #stran}i. */
+    /**
+     * Jsoup poizvedba s katero poiščemo ustrezen element, ki mora vsebovati
+     * atribut "href", na {@code stran}i. Glej:
+     * https://jsoup.org/cookbook/extracting-data/selector-syntax
+     * za več informacij o sintaksi.
+     */
     private final String jsoupPoizvedba;
 
     /**
      * Ekvivalentno klicu:
      * <br>
-     * {@code new UrlNaStrani(stran, "", regexUrl, "")}.
+     * {@code new UrlNaStrani(stran, "", jsoupPoizvedba)}.
      * <br>
-     * Glej: {@link #UrlNaStrani(SpletnaStran, String, String, String)}
+     * Glej: {@link #UrlNaStrani(SpletnaStran, String, String)}
      *
-     * @param stran stran na kateri se nahaja url
-     * @param regexUrl regularni izraz - ključ po katerem iščemo url
+     * @param stran stran na kateri se nahaja URL
+     * @param jsoupPoizvedba Jsoup poizvedba s katero poiščemo ustrezen
+     *                       element, ki mora vsebovati atribut
+     *                       "href", na {@code stran}i. Glej:
+     *                       https://jsoup.org/cookbook/extracting-data/selector-syntax
+     *                       za več informacij o sintaksi.
      */
     public UrlNaStrani(
         final SpletnaStran stran,
-        final String regexUrl
+        final String jsoupPoizvedba
     ) {
-        this(stran, "", regexUrl);
+        this(stran, "", jsoupPoizvedba);
     }
 
     /**
-     * Zgradi nov URL, ki se ujema z {@code regexUrl} na tej {@code stran}i.
+     * Zgradi nov URL, ki je rezultat Jsoup poizvedbe na tej {@code stran}i.
+     * <p>
+     * Uporabi se vrednost atributa "href" prvega elementa rezultata. Skupaj s
+     * predpono {@code predpona} tvorita ta URL.
      *
      * @param stran stran na kateri se nahaja URL
-     * @param predpona opcijska predpona, ki jo pripnemo na začetek URL ujemanja
-     * @param regexUrl regularni izraz - ključ po katerem iščemo URL
+     * @param predpona opcijska predpona, ki jo dodamo rezultatu Jsoup
+     *                 poizvedbe, da zgradimo ta URL
+     * @param jsoupPoizvedba Jsoup poizvedba s katero poiščemo ustrezen
+     *                       element, ki mora vsebovati atribut
+     *                       "href", na {@code stran}i. Glej:
+     *                       https://jsoup.org/cookbook/extracting-data/selector-syntax
+     *                       za več informacij o sintaksi.
      */
     public UrlNaStrani(
         final SpletnaStran stran,
@@ -52,15 +72,11 @@ public final class UrlNaStrani implements SvederUrl {
 
     /**
      * Vrne URL na strani.
-     * <p>
-     * Z regularnim izrazom se poišče prvo ujemanje na strani. Ujemanju se
-     * z leve strani doda predpona in z desne pripona. Metoda vrne dobljen
-     * rezultat kot nov URL.
      *
      * @return novo instanco iskanega URL-ja na strani
-     * @throws IOException če pride do napak pri branju strani če na strani
+     * @throws IOException če pride do napak pri branju strani
      * @throws FileNotFoundException če na strani ni URL naslova, ki se ujema z
-     *                               {@code regexUrl}, podanim prek
+     *                               nizom {@code jsoupPoizvedba}, podanim prek
      *                               konstruktorja
      * @throws java.net.MalformedURLException če URL ni veljaven
      */

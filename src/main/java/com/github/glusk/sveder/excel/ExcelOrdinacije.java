@@ -37,9 +37,6 @@ public final class ExcelOrdinacije implements Ordinacije {
     private static final String RELATIVNA_POT = "/wps/portal/portali/aizv/zdravstvene_storitve/izbira_osebnega_zdravnika/sezn_akt_zob_za_odrasle_in_mladino";
     /** Spletni naslov strani z seznamom preglednic aktivnih zobozdravnikov. */
     private static final String URL_STRANI = STREZNIK + RELATIVNA_POT;
-    /** Zadnji konec url naslova {@code .xls} preglednic. */
-    @SuppressWarnings("checkstyle:linelength")
-    private static final String PREGLEDNICE_REP = "/!ut/p/z1/lZDNCsIwEIQfKRPz0_YY1JpUa61gW3ORnCSg1YP4_EbwImps57IsfLM7DLGkI7Z3d390N3_p3SnseysPnM7NglUw1ZpzKNWEmW0YZELaKFBLYkf507yZwWynusyXBQNjw_wSpdIGVKe8UDBCrkQisglAh_nxQwoj838CNn6-JTb64tngO_CloihQ0xcQK-lfzOt5F9TBG68eA7bkog!!/dz/d5/L2dBISEvZ0FBIS9nQSEh/p0/IZ7_41EIG3O0I80C20AMRSECTR20C6=CZ6_41EIG3O0ION440AAVON49P3067=NEst_datoteke!\\d*==/";
     /**
      * Modul za testiranje posebnih šifer območnih enot izvajalcev.
      *
@@ -85,7 +82,7 @@ public final class ExcelOrdinacije implements Ordinacije {
                     () -> new URL(URL_STRANI)
                 ),
                 STREZNIK,
-                RELATIVNA_POT + PREGLEDNICE_REP
+                "li:containsOwn(Seznam aktivnih zobozdravnikov za odrasle in mladino) + li a[href]"
             )
         );
     }
