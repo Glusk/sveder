@@ -10,6 +10,9 @@
 Java knjižnica za *vrtanje* po javno-dostopnih podatkih o zobozdravstvenih
 ordinacijah, ki so del javne mreže.
 
+**Projekt https://zdravniki.sledilnik.org/ ne samo rešuje težave, ki jih je skušal rešiti Sveder, temveč tudi druge.
+Zato ni več potrebe po tem projektu.**
+
 ## Motivacija
 
 Iz javno dostopnih podatkov je prekleto težko zbrati ključne podatke o posamezni ordinaciji.
